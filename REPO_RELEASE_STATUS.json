@@ -1,0 +1,16 @@
+{
+  "package_scope": "Phase 1 full source and evidence: independent structure, quality and real EDA",
+  "root_card_sha256": "aeff0a26ea1c41bcfd5b1058ff36d4c4622938e0dcfdd447f680d5d0ddfdb9f8",
+  "source_eda_zip": "EDA_SEND_TO_CHAT_20261108T131934Z_6e74f578.zip",
+  "source_eda_zip_sha256": "629a8c01b071c329a9fbcbff770b731b19af7eb5f5dae6680f0b0400e276df68",
+  "run_id_eda": "20261108T131934Z_6e74f578",
+  "eda_check_status": "PASS_REAL_Q_MATCHED",
+  "code_and_output_integrity": "Source output checksums verified from ARTIFACT_CHECKSUMS.json",
+  "source_quality_zip": "QUALITY_SEND_TO_CHAT_20261106T043348Z_4216fe6a.zip",
+  "quality_run": "20261106T043348Z_4216fe6a",
+  "independent_structure_full_archive": "PRESENT_VERIFIED",
+  "github_tag": "EXISTING_TAG_REPORTED_BY_USER_TARGET_NOT_VERIFIED",
+  "recorded_utc": "2026-11-09",
+  "run_id_structure": "20261101T045111Z_23f309f5",
+  "source_structure_zip_sha256": "93368cb196b614cd51308757e6fc2782416b59f77629cc935b259d207798b2da"
+}

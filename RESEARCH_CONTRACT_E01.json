@@ -1,0 +1,117 @@
+{
+  "requirement": "E01",
+  "contract_version": "1.0.0",
+  "source_document": "PROJECT_CARD.md",
+  "source_document_version": "1.1",
+  "source_document_sha256": "60543132e34b2a480a5bde042cb512eff37a8d42164618bf4c9726b0133b8ddf",
+  "research_question_verbatim": "Across All_Beauty, Appliances, Electronics, and Beauty_and_Personal_Care, does adding the text of a product’s first five valid observed reviews to the ratings and timing of those same reviews improve out-of-sample prediction of the proportion of one- and two-star ratings among its next ten observed reviews? Does the combined approach also outperform a simple category-adjusted rating baseline, and how do prediction gains and human-review prioritization benefits differ across categories?",
+  "question_summary_fa": "آیا افزودن متن پنج نقد معتبرِ مشاهده‌شدهٔ نخست هر محصول به اطلاعات ساختاری همان پنج نقد، سهم امتیازهای ۱ و ۲ در ده نقد معتبرِ مشاهده‌شدهٔ بعدی را خارج از نمونه بهتر پیش‌بینی می‌کند، و آیا تفاوت در چهار دسته وجود دارد؟",
+  "dataset": "Amazon Reviews’23",
+  "track": "B",
+  "categories": [
+    "All_Beauty",
+    "Appliances",
+    "Beauty_and_Personal_Care",
+    "Electronics"
+  ],
+  "study_unit": {
+    "raw_observation": "collected review record",
+    "prediction_and_loss": "one globally identified parent_asin product",
+    "product_key": "parent_asin",
+    "sample_boundary": "fifth valid nonduplicate observed review",
+    "observation_not_census": "first observed valid does not imply first ever published"
+  },
+  "time": {
+    "prediction_instant": "t5",
+    "outcome_maturity_instant": "t15",
+    "input_review_indices": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "outcome_review_indices": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "horizon": "next ten observed valid nonduplicate reviews; not a fixed number of days",
+    "tie_boundary_policy": "exclude product from primary cohort if t5=t6, or if review 16 exists and t15=t16"
+  },
+  "target": {
+    "type": "product-level regression proportion",
+    "low_star_labels": [
+      1,
+      2
+    ],
+    "denominator": 10,
+    "definition": "Y_p = sum_{j=6}^{15} 1[rating_pj in {1,2}] / 10",
+    "support": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "three_star_is_low": false,
+    "unknown_next_ten": "missing outcome, never encoded as zero"
+  },
+  "primary_hypothesis": {
+    "comparison": "S versus ST",
+    "S": "ratings and historical timing from reviews 1-5 plus category",
+    "ST": "same structural inputs plus titles/bodies of reviews 1-5",
+    "controls": "same products, split, model family and comparable tuning budget",
+    "effect": "paired squared-loss improvement averaged equally over four categories",
+    "null": "Delta <= 0",
+    "alternative": "Delta > 0"
+  },
+  "secondary_comparators": [
+    "B0 category-only constant",
+    "B1 category-adjusted smoothed early low-star share",
+    "T text only"
+  ],
+  "decision": {
+    "action": "rank eligible products for human review",
+    "operational_fraction": 0.1,
+    "sensitivity_fractions": [
+      0.05,
+      0.2
+    ],
+    "not_a_measured_budget": true
+  },
+  "phase1_boundary": {
+    "purpose": "describe distributions, relationships, populations, cohort and leakage risks",
+    "not_yet_demonstrated": [
+      "out-of-sample text value-add",
+      "valid fitted models",
+      "causal explanation",
+      "measured business benefit"
+    ],
+    "descriptive_Y_is_not_prediction": true,
+    "do_not_train_or_evaluate_models": true
+  },
+  "historical_leakage_blocklist": [
+    "reviews 6-15 as predictors",
+    "t15 and label maturity as predictors",
+    "crawl-time metadata average_rating",
+    "crawl-time metadata rating_number",
+    "crawl-time price without archival evidence",
+    "cumulative helpful_vote without historical snapshot",
+    "future-derived text/timing"
+  ],
+  "split_status": "design only; calendar boundaries pending; enforce global product and label maturity in future modeling"
+}
