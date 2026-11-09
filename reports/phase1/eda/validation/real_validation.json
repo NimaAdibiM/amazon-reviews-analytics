@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "run": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\eda_all_runs\\20261108T131934Z_6e74f578\\full",
+  "status": "PASS_REAL_Q_MATCHED",
+  "all_checks_passed": true,
+  "real_validation_claimed": true,
+  "checks": {
+    "E55_artifact_hash_integrity": {
+      "passed": true,
+      "detail": ""
+    },
+    "E55_run_status_complete": {
+      "passed": true,
+      "detail": ""
+    },
+    "E55_manifest_status_agrees": {
+      "passed": true,
+      "detail": ""
+    },
+    "E55_code_hashes_match_checked_out_sources": {
+      "passed": true,
+      "detail": ""
+    },
+    "E55_configuration_snapshot": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_four_category_inputs": {
+      "passed": true,
+      "detail": "['All_Beauty', 'Appliances', 'Beauty_and_Personal_Care', 'Electronics']"
+    },
+    "E54_eight_role_sources": {
+      "passed": true,
+      "detail": ""
+    },
+    "E55_research_contract": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_All_Beauty_input_to_outputs": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_All_Beauty_stars_sum": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_All_Beauty_univariate_denominators": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_All_Beauty_multivariate_denominators": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_All_Beauty_cohort_denominators": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_All_Beauty_exclude_cohort_conservation": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_All_Beauty_retain_cohort_conservation": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_All_Beauty_reviews_eof": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_All_Beauty_reviews_source_file_sha": {
+      "passed": true,
+      "detail": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\All_Beauty.jsonl.gz"
+    },
+    "E54_All_Beauty_metadata_eof": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_All_Beauty_metadata_source_file_sha": {
+      "passed": true,
+      "detail": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\meta_All_Beauty.jsonl.gz"
+    },
+    "E53_Appliances_input_to_outputs": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Appliances_stars_sum": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Appliances_univariate_denominators": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Appliances_multivariate_denominators": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Appliances_cohort_denominators": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Appliances_exclude_cohort_conservation": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Appliances_retain_cohort_conservation": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Appliances_reviews_eof": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Appliances_reviews_source_file_sha": {
+      "passed": true,
+      "detail": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\Appliances.jsonl.gz"
+    },
+    "E54_Appliances_metadata_eof": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Appliances_metadata_source_file_sha": {
+      "passed": true,
+      "detail": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\meta_Appliances.jsonl.gz"
+    },
+    "E53_Beauty_and_Personal_Care_input_to_outputs": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Beauty_and_Personal_Care_stars_sum": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Beauty_and_Personal_Care_univariate_denominators": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Beauty_and_Personal_Care_multivariate_denominators": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Beauty_and_Personal_Care_cohort_denominators": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Beauty_and_Personal_Care_exclude_cohort_conservation": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Beauty_and_Personal_Care_retain_cohort_conservation": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Beauty_and_Personal_Care_reviews_eof": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Beauty_and_Personal_Care_reviews_source_file_sha": {
+      "passed": true,
+      "detail": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\Beauty_and_Personal_Care.jsonl.gz"
+    },
+    "E54_Beauty_and_Personal_Care_metadata_eof": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Beauty_and_Personal_Care_metadata_source_file_sha": {
+      "passed": true,
+      "detail": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\meta_Beauty_and_Personal_Care.jsonl.gz"
+    },
+    "E53_Electronics_input_to_outputs": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Electronics_stars_sum": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Electronics_univariate_denominators": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Electronics_multivariate_denominators": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Electronics_cohort_denominators": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Electronics_exclude_cohort_conservation": {
+      "passed": true,
+      "detail": ""
+    },
+    "E53_Electronics_retain_cohort_conservation": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Electronics_reviews_eof": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Electronics_reviews_source_file_sha": {
+      "passed": true,
+      "detail": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\Electronics.jsonl.gz"
+    },
+    "E54_Electronics_metadata_eof": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Electronics_metadata_source_file_sha": {
+      "passed": true,
+      "detail": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\meta_Electronics.jsonl.gz"
+    },
+    "E56_reports_present": {
+      "passed": true,
+      "detail": ""
+    },
+    "E57_split_only_design": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_real_dataset_scope": {
+      "passed": true,
+      "detail": "mode=full;input_role=dataset;scope=entire_supplied_dataset_files"
+    },
+    "E54_independent_raw_rehash_requested": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Q_metrics_match_actual_input": {
+      "passed": true,
+      "detail": "matched_all_inputs_and_metric_definitions"
+    },
+    "E54_Q_archive_internally_verified": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_same_Q_archive_used": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_All_Beauty_reviews_quality_source_match": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_All_Beauty_metadata_quality_source_match": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Appliances_reviews_quality_source_match": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Appliances_metadata_quality_source_match": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Beauty_and_Personal_Care_reviews_quality_source_match": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Beauty_and_Personal_Care_metadata_quality_source_match": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Electronics_reviews_quality_source_match": {
+      "passed": true,
+      "detail": ""
+    },
+    "E54_Electronics_metadata_quality_source_match": {
+      "passed": true,
+      "detail": ""
+    }
+  },
+  "failures": [],
+  "pending": [
+    "E56_each_chart_human_interpretation_review_not_automatically_certified"
+  ],
+  "artifact_integrity": {
+    "passed": true,
+    "errors": [],
+    "files_checked": 129
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "status": "completed",
+  "run_id": "20261101T045111Z_23f309f5",
+  "scope": "entire_supplied_dataset_files",
+  "started_utc": "2026-11-01T04:51:11.752629+00:00",
+  "audit_as_of_utc": "2026-11-01T04:51:11.751315+00:00",
+  "categories": [
+    "Electronics",
+    "Beauty_and_Personal_Care",
+    "Appliances",
+    "All_Beauty"
+  ],
+  "completed_utc": "2026-11-01T07:01:17.769183+00:00",
+  "data_issues_detected": false,
+  "data_issues_by_file": {}
+}

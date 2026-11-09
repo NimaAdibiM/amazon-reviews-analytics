@@ -1,0 +1,30 @@
+{
+  "sources": [
+    {
+      "audit": "structure",
+      "run_id": "20261101T045111Z_23f309f5",
+      "status": "completed",
+      "scope": "entire_supplied_dataset_files"
+    },
+    {
+      "audit": "quality",
+      "run_id": "20261106T043348Z_4216fe6a",
+      "status": "completed"
+    },
+    {
+      "audit": "eda",
+      "run_id": "20261108T131934Z_6e74f578",
+      "validation": "PASS_REAL_Q_MATCHED"
+    }
+  ],
+  "counts": {
+    "reviews_total": 70628467,
+    "metadata_total": 2845843,
+    "raw_distinct_parent_category_sum": 2845475,
+    "metadata_only_parents": 368,
+    "cohort_5plus10": 517606
+  },
+  "evidence_scope": "complete supplied four category data files; not all Amazon products or reviewers",
+  "github_tag": "user reports existing tag; tag target not verified",
+  "source_zip_structure_sha256": "93368cb196b614cd51308757e6fc2782416b59f77629cc935b259d207798b2da"
+}

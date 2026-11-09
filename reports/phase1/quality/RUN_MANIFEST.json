@@ -1,0 +1,153 @@
+{
+  "runner_version": "1.0.0-all-categories-runner",
+  "run_id": "20261106T043348Z_4216fe6a",
+  "status": "completed",
+  "created_utc": "2026-11-06T04:33:48.921452+00:00",
+  "audit_as_of_utc": "2026-11-06T04:33:48.921434+00:00",
+  "config_path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\structure_all_categories.json",
+  "original_config_sha256": "a673550ea1edf6f84d103d4d267b33ef34f5e87a55c984e52422d3f4c9d9eaa5",
+  "code_sha256": "afe1469886ba866ad4c947c16d4ccd4cfaf453a0693e683e46e25200d0852c10",
+  "structure_sha256": "1f477712764120493ad87ced151b3bd371dd30519928f4b32b7021a30ded9e7f",
+  "input_fingerprints": {
+    "Electronics": {
+      "reviews": {
+        "path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\Electronics.jsonl.gz",
+        "bytes": 6474438619,
+        "mtime_ns": 1793063959098369900
+      },
+      "metadata": {
+        "path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\meta_Electronics.jsonl.gz",
+        "bytes": 1312900427,
+        "mtime_ns": 1793084904997508400
+      }
+    },
+    "Beauty_and_Personal_Care": {
+      "reviews": {
+        "path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\Beauty_and_Personal_Care.jsonl.gz",
+        "bytes": 2960355713,
+        "mtime_ns": 1793067699315208100
+      },
+      "metadata": {
+        "path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\meta_Beauty_and_Personal_Care.jsonl.gz",
+        "bytes": 711243207,
+        "mtime_ns": 1793507915176683000
+      }
+    },
+    "Appliances": {
+      "reviews": {
+        "path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\Appliances.jsonl.gz",
+        "bytes": 270209794,
+        "mtime_ns": 1793341174347931200
+      },
+      "metadata": {
+        "path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\meta_Appliances.jsonl.gz",
+        "bytes": 66406659,
+        "mtime_ns": 1793341161159737200
+      }
+    },
+    "All_Beauty": {
+      "reviews": {
+        "path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\All_Beauty.jsonl.gz",
+        "bytes": 94441517,
+        "mtime_ns": 1793508511393917000
+      },
+      "metadata": {
+        "path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\meta_All_Beauty.jsonl.gz",
+        "bytes": 39871253,
+        "mtime_ns": 1793507357194850300
+      }
+    }
+  },
+  "source_role": "dataset",
+  "smoke_lines": 1000,
+  "keep_index": false,
+  "allow_sample": false,
+  "output_base": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs",
+  "work_base": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\derived\\quality",
+  "smoke": {
+    "Electronics": {
+      "status": "completed",
+      "completed_utc": "2026-11-06T04:33:51.105269+00:00",
+      "result_folder": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\smoke\\Electronics\\20261106T043349Z_dda36af4",
+      "summary_path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\smoke\\Electronics\\20261106T043349Z_dda36af4\\quality_summary.json",
+      "review_objects": 1000,
+      "metadata_objects": 1000,
+      "scope": "head_preview"
+    },
+    "Beauty_and_Personal_Care": {
+      "status": "completed",
+      "completed_utc": "2026-11-06T04:33:52.656602+00:00",
+      "result_folder": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\smoke\\Beauty_and_Personal_Care\\20261106T043351Z_471f439f",
+      "summary_path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\smoke\\Beauty_and_Personal_Care\\20261106T043351Z_471f439f\\quality_summary.json",
+      "review_objects": 1000,
+      "metadata_objects": 1000,
+      "scope": "head_preview"
+    },
+    "Appliances": {
+      "status": "completed",
+      "completed_utc": "2026-11-06T04:33:54.373486+00:00",
+      "result_folder": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\smoke\\Appliances\\20261106T043352Z_6c92a60e",
+      "summary_path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\smoke\\Appliances\\20261106T043352Z_6c92a60e\\quality_summary.json",
+      "review_objects": 1000,
+      "metadata_objects": 1000,
+      "scope": "head_preview"
+    },
+    "All_Beauty": {
+      "status": "completed",
+      "completed_utc": "2026-11-06T04:33:56.114120+00:00",
+      "result_folder": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\smoke\\All_Beauty\\20261106T043354Z_0cbe66b3",
+      "summary_path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\smoke\\All_Beauty\\20261106T043354Z_0cbe66b3\\quality_summary.json",
+      "review_objects": 1000,
+      "metadata_objects": 1000,
+      "scope": "head_preview"
+    }
+  },
+  "full": {
+    "All_Beauty": {
+      "status": "completed",
+      "completed_utc": "2026-11-06T04:39:03.170166+00:00",
+      "result_folder": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\full\\All_Beauty\\20261106T043356Z_033fa2af",
+      "summary_path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\full\\All_Beauty\\20261106T043356Z_033fa2af\\quality_summary.json",
+      "review_objects": 701528,
+      "metadata_objects": 112590,
+      "scope": "entire_supplied_dataset_files"
+    },
+    "Appliances": {
+      "status": "completed",
+      "completed_utc": "2026-11-06T05:08:55.788506+00:00",
+      "result_folder": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\full\\Appliances\\20261106T043903Z_abd344de",
+      "summary_path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\full\\Appliances\\20261106T043903Z_abd344de\\quality_summary.json",
+      "review_objects": 2128605,
+      "metadata_objects": 94327,
+      "scope": "entire_supplied_dataset_files"
+    },
+    "Beauty_and_Personal_Care": {
+      "status": "completed",
+      "completed_utc": "2026-11-06T09:09:07.898366+00:00",
+      "result_folder": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\full\\Beauty_and_Personal_Care\\20261106T050856Z_f48d9c55",
+      "summary_path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\full\\Beauty_and_Personal_Care\\20261106T050856Z_f48d9c55\\quality_summary.json",
+      "review_objects": 23911390,
+      "metadata_objects": 1028914,
+      "scope": "entire_supplied_dataset_files"
+    },
+    "Electronics": {
+      "status": "completed",
+      "completed_utc": "2026-11-06T23:59:37.756847+00:00",
+      "result_folder": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\full\\Electronics\\20261106T090909Z_21f64d70",
+      "summary_path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\quality_all_runs\\20261106T043348Z_4216fe6a\\outputs\\full\\Electronics\\20261106T090909Z_21f64d70\\quality_summary.json",
+      "review_objects": 43886944,
+      "metadata_objects": 1610012,
+      "scope": "entire_supplied_dataset_files"
+    }
+  },
+  "comparison": {
+    "status": "completed",
+    "metric_statuses": {
+      "reviews.helpful_vote": "descriptive_four_category_comparison",
+      "metadata.price": "descriptive_four_category_comparison",
+      "metadata.rating_number": "descriptive_four_category_comparison"
+    }
+  },
+  "preflight_ok": true,
+  "completed_utc": "2026-11-06T23:59:39.096987+00:00"
+}

@@ -1,0 +1,40 @@
+{
+  "run_id": "20261101T045111Z_23f309f5",
+  "scope": "entire_supplied_dataset_files",
+  "categories": [
+    "Electronics",
+    "Beauty_and_Personal_Care",
+    "Appliances",
+    "All_Beauty"
+  ],
+  "summary_paths": {
+    "Electronics": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\structure\\20261101T045111Z_23f309f5\\Electronics\\summary.json",
+    "Beauty_and_Personal_Care": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\structure\\20261101T045111Z_23f309f5\\Beauty_and_Personal_Care\\summary.json",
+    "Appliances": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\structure\\20261101T045111Z_23f309f5\\Appliances\\summary.json",
+    "All_Beauty": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\structure\\20261101T045111Z_23f309f5\\All_Beauty\\summary.json"
+  },
+  "category_comparison": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\structure\\20261101T045111Z_23f309f5\\category_modality_comparison.csv",
+  "category_comparison_json": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\structure\\20261101T045111Z_23f309f5\\category_modality_comparison.json",
+  "category_comparison_readable": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\structure\\20261101T045111Z_23f309f5\\category_modality_comparison.md",
+  "missingness_association": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\structure\\20261101T045111Z_23f309f5\\missingness_category_association.csv",
+  "missingness_association_json": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\structure\\20261101T045111Z_23f309f5\\missingness_category_association.json",
+  "missingness_association_readable": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\structure\\20261101T045111Z_23f309f5\\missingness_category_association.md",
+  "input_paths": {
+    "Electronics": {
+      "reviews": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\Electronics.jsonl.gz",
+      "metadata": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\meta_Electronics.jsonl.gz"
+    },
+    "Beauty_and_Personal_Care": {
+      "reviews": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\Beauty_and_Personal_Care.jsonl.gz",
+      "metadata": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\meta_Beauty_and_Personal_Care.jsonl.gz"
+    },
+    "Appliances": {
+      "reviews": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\Appliances.jsonl.gz",
+      "metadata": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\meta_Appliances.jsonl.gz"
+    },
+    "All_Beauty": {
+      "reviews": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\All_Beauty.jsonl.gz",
+      "metadata": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\meta_All_Beauty.jsonl.gz"
+    }
+  }
+}

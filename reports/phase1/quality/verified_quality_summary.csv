@@ -1,0 +1,5 @@
+﻿category,review_records,metadata_records,review_physical_lines,metadata_physical_lines,review_duplicate_extras,metadata_duplicate_extras,parse_errors_review,parse_errors_metadata,rating_invalid,negative_1_2,rating_valid,short_nonblank_at_most_3_words,long_over_10000_characters,body_available,review_image_ref_available,metadata_price_available,metadata_image_ref_available,metadata_categories_available,metadata_features_available,metadata_description_available,negative_rate_valid
+All_Beauty,701528,112590,701528,112590,7275,0,0,0,0,145114,701528,71470,6,700808,59684,17704,112590,0,17377,19162,0.20685418115884185
+Appliances,2128605,94327,2128605,94327,22656,0,0,0,0,330117,2128605,263279,39,2126540,84949,46726,94326,91042,77783,62155,0.15508607750146222
+Beauty_and_Personal_Care,23911390,1028914,23911390,1028914,242473,0,0,0,0,4115909,23911390,2391940,184,23874796,1696925,380597,1028834,1028914,745577,564371,0.17213173303601337
+Electronics,43886944,1610012,43886944,1610012,477968,0,0,0,2,7616404,43886942,4428773,3324,43845751,2023745,526449,1609643,1481570,1186971,927264,0.17354601740080228

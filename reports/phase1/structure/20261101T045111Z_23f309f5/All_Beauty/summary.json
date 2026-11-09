@@ -1,0 +1,5326 @@
+{
+  "audit_version": "1.26.1-single-category-option",
+  "run_id": "20261101T045111Z_23f309f5",
+  "scope": "entire_supplied_dataset_files",
+  "category": "All_Beauty",
+  "input_role": "dataset",
+  "started_utc": "2026-11-01T04:51:11.752629+00:00",
+  "completed_utc": "2026-11-01T07:01:17.745815+00:00",
+  "runtime": {
+    "python": "3.13.16",
+    "sqlite": "3.50.4",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "effective_settings": {
+    "config_path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\structure_all_categories.json",
+    "batch_size": 25000,
+    "progress_every_lines": 100000,
+    "preview_lines": 0,
+    "timestamp_unit": "ms",
+    "reference_start": "1996-05-01T00:00:00+00:00",
+    "reference_end_exclusive": "2023-10-01T00:00:00+00:00",
+    "audit_as_of_utc": "2026-11-01T04:51:11.751315+00:00"
+  },
+  "files": {
+    "reviews": {
+      "path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\All_Beauty.jsonl.gz",
+      "stored_bytes": 94441517,
+      "compression": "gzip",
+      "physical_lines_scanned": 701528,
+      "object_records": 701528,
+      "blank_lines": 0,
+      "parse_errors": 0,
+      "non_object_records": 0,
+      "error_line_examples": [],
+      "indexed_identifier_rows": {
+        "user_id": 701528,
+        "asin": 701528,
+        "parent_asin": 701528
+      },
+      "unindexed_identifier_rows": {},
+      "parse_error_reasons": {},
+      "modality_available_counts": {
+        "review_text": 701528,
+        "review_text_body": 700808,
+        "review_rating": 701528,
+        "review_images": 59684,
+        "user_item_interaction": 701528,
+        "review_time": 701528
+      },
+      "temporal": {
+        "status": "audited_review_timestamp",
+        "field": "timestamp",
+        "meaning": "Publisher-documented time of a review; not purchase time",
+        "unit": "ms",
+        "unit_status": "configured_assumption_to_verify_on_local_data",
+        "timezone": "UTC",
+        "counts": {
+          "absent_key": 0,
+          "explicit_null": 0,
+          "wrong_raw_type": 0,
+          "outside_datetime_range": 0,
+          "convertible": 701528
+        },
+        "earliest_convertible_utc": "2000-11-01T04:24:18+00:00",
+        "latest_convertible_utc": "2023-09-09T00:39:36.666000+00:00",
+        "observed_span_days": 8346.843966042,
+        "reference_full_corpus_period": "May 1996 through September 2023",
+        "reference_period_scope": "publisher's entire Amazon Reviews'23 dataset, NOT this category",
+        "reference_start_inclusive_utc": "1996-05-01T00:00:00+00:00",
+        "reference_end_exclusive_utc": "2023-10-01T00:00:00+00:00",
+        "audit_as_of_utc": "2026-11-01T04:51:11.751315+00:00",
+        "plausibility_flags": {
+          "within_reference_window": 701528,
+          "outside_reference_window": 0,
+          "before_reference_start": 0,
+          "at_or_after_reference_end": 0,
+          "after_as_of": 0
+        },
+        "observed_range_scope": "only successfully parsed records in this scan",
+        "convertible_rows_with_indexable_parent": 701528,
+        "whole_second_aligned_convertible_rows": 166694,
+        "whole_second_alignment_note": "Divisibility alone does not prove timestamp measurement precision",
+        "sort_timestamp_observed_rows": 0,
+        "note": "The publisher's schema documents timestamp, but its public sample uses sort_timestamp. This audit does not silently treat them as synonyms. The publisher's global date range is a plausibility reference, not a row filter or a proof that an out-of-window record is wrong. Future-time flags are relative to the recorded audit_as_of_utc."
+      },
+      "review_rows_with_usable_asin_parent_pair": 701528,
+      "unindexed_identifier_reasons": {
+        "user_id": {
+          "absent_key": 0,
+          "explicit_null": 0,
+          "wrong_type": 0,
+          "blank_string": 0,
+          "invalid_utf8": 0
+        },
+        "asin": {
+          "absent_key": 0,
+          "explicit_null": 0,
+          "wrong_type": 0,
+          "blank_string": 0,
+          "invalid_utf8": 0
+        },
+        "parent_asin": {
+          "absent_key": 0,
+          "explicit_null": 0,
+          "wrong_type": 0,
+          "blank_string": 0,
+          "invalid_utf8": 0
+        }
+      },
+      "indexed_identifier_surrounding_whitespace_rows": {
+        "user_id": 0,
+        "asin": 0,
+        "parent_asin": 0
+      },
+      "union_top_level_field_count": 10,
+      "observed_field_names": [
+        "asin",
+        "helpful_vote",
+        "images",
+        "parent_asin",
+        "rating",
+        "text",
+        "timestamp",
+        "title",
+        "user_id",
+        "verified_purchase"
+      ],
+      "documented_field_names": [
+        "asin",
+        "helpful_vote",
+        "images",
+        "parent_asin",
+        "rating",
+        "text",
+        "timestamp",
+        "title",
+        "user_id",
+        "verified_purchase"
+      ],
+      "documented_fields_not_observed_in_scan": [],
+      "additional_observed_field_names": [],
+      "keys_per_record_distribution": {
+        "10": 701528
+      },
+      "column_inventory": [
+        {
+          "field": "asin",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 701528,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 701528,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "identifier",
+          "meaning": "Identifier of the reviewed product variant",
+          "expected_nonnull_raw_types": [
+            "string"
+          ],
+          "observed_raw_type_counts": {
+            "string": 701528
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "helpful_vote",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 701528,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 701528,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "count",
+          "meaning": "Cumulative helpful-vote count; event-time availability unverified",
+          "expected_nonnull_raw_types": [
+            "integer"
+          ],
+          "observed_raw_type_counts": {
+            "integer": 701528
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "images",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 701528,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 641844,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 59684,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "nested",
+          "meaning": "Image descriptors provided with the review",
+          "expected_nonnull_raw_types": [
+            "array"
+          ],
+          "observed_raw_type_counts": {
+            "array": 701528
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "parent_asin",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 701528,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 701528,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "join_key",
+          "meaning": "Product-parent ID used to join to metadata",
+          "expected_nonnull_raw_types": [
+            "string"
+          ],
+          "observed_raw_type_counts": {
+            "string": 701528
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "rating",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 701528,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 701528,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "ordinal_rating",
+          "meaning": "Star rating attached to a review",
+          "expected_nonnull_raw_types": [
+            "integer",
+            "number"
+          ],
+          "observed_raw_type_counts": {
+            "number": 701528
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "text",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 701528,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 720,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 700808,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "text",
+          "meaning": "Full text of a user's review",
+          "expected_nonnull_raw_types": [
+            "string"
+          ],
+          "observed_raw_type_counts": {
+            "string": 701528
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "timestamp",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 701528,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 701528,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "temporal",
+          "meaning": "Review timestamp in Unix epoch units; confirm units separately",
+          "expected_nonnull_raw_types": [
+            "integer"
+          ],
+          "observed_raw_type_counts": {
+            "integer": 701528
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "title",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 701528,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 701528,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "text",
+          "meaning": "Headline of a user's review",
+          "expected_nonnull_raw_types": [
+            "string"
+          ],
+          "observed_raw_type_counts": {
+            "string": 701528
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "user_id",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 701528,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 701528,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "identifier",
+          "meaning": "Reviewer identifier; not a real-world identity",
+          "expected_nonnull_raw_types": [
+            "string"
+          ],
+          "observed_raw_type_counts": {
+            "string": 701528
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "verified_purchase",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 701528,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 701528,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "binary",
+          "meaning": "Whether the purchase is marked verified",
+          "expected_nonnull_raw_types": [
+            "boolean"
+          ],
+          "observed_raw_type_counts": {
+            "boolean": 701528
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        }
+      ],
+      "field_types": {
+        "asin": {
+          "string": 701528
+        },
+        "helpful_vote": {
+          "integer": 701528
+        },
+        "images": {
+          "array": 701528
+        },
+        "parent_asin": {
+          "string": 701528
+        },
+        "rating": {
+          "number": 701528
+        },
+        "text": {
+          "string": 701528
+        },
+        "timestamp": {
+          "integer": 701528
+        },
+        "title": {
+          "string": 701528
+        },
+        "user_id": {
+          "string": 701528
+        },
+        "verified_purchase": {
+          "boolean": 701528
+        }
+      },
+      "container_member_types": [
+        {
+          "field": "images",
+          "member_kind": "array_element",
+          "types": {
+            "object": 107122
+          }
+        }
+      ],
+      "nested_containers": [
+        {
+          "field": "images",
+          "container_type": "array",
+          "container_rows": 701528,
+          "empty_rows": 641844,
+          "total_items_or_keys": 107122,
+          "max_size": 29,
+          "min_size": 0,
+          "mean_size": 0.1526981104104184
+        }
+      ],
+      "nested_child_types": [
+        {
+          "field": "images",
+          "location": "array_object",
+          "child_key": "attachment_type",
+          "raw_type_occurrences": {
+            "string": 107122
+          }
+        },
+        {
+          "field": "images",
+          "location": "array_object",
+          "child_key": "large_image_url",
+          "raw_type_occurrences": {
+            "string": 107122
+          }
+        },
+        {
+          "field": "images",
+          "location": "array_object",
+          "child_key": "medium_image_url",
+          "raw_type_occurrences": {
+            "string": 107122
+          }
+        },
+        {
+          "field": "images",
+          "location": "array_object",
+          "child_key": "small_image_url",
+          "raw_type_occurrences": {
+            "string": 107122
+          }
+        }
+      ],
+      "nested_child_key_limit_per_field_and_location": 5000,
+      "nested_child_key_tracking_overflow": [],
+      "readable_json_values": 701528,
+      "excluded_from_object_records": 0,
+      "line_accounting_valid": true,
+      "reached_eof": true,
+      "has_structural_input_issues": false,
+      "scanned_content_sha256": "36ca7c48440a8247b2dca0174d095238422b506a8a80c114dca722b7715f1c94",
+      "hash_scope": "Scanned decompressed bytes, including original line endings and BOM if present.",
+      "scan_mode": "entire_supplied_file",
+      "elapsed_seconds": 21.645
+    },
+    "metadata": {
+      "path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\raw\\meta_All_Beauty.jsonl.gz",
+      "stored_bytes": 39871253,
+      "compression": "gzip",
+      "physical_lines_scanned": 112590,
+      "object_records": 112590,
+      "blank_lines": 0,
+      "parse_errors": 0,
+      "non_object_records": 0,
+      "error_line_examples": [],
+      "indexed_identifier_rows": {
+        "parent_asin": 112590
+      },
+      "unindexed_identifier_rows": {},
+      "parse_error_reasons": {},
+      "modality_available_counts": {
+        "product_metadata": 112590,
+        "product_images": 112590,
+        "product_price": 17704
+      },
+      "temporal": {
+        "status": "not_applicable_no_documented_review_timestamp",
+        "field": null,
+        "unit": null,
+        "note": "Product metadata is a crawl-time snapshot; no review timestamp is expected."
+      },
+      "review_rows_with_usable_asin_parent_pair": null,
+      "unindexed_identifier_reasons": {
+        "parent_asin": {
+          "absent_key": 0,
+          "explicit_null": 0,
+          "wrong_type": 0,
+          "blank_string": 0,
+          "invalid_utf8": 0
+        }
+      },
+      "indexed_identifier_surrounding_whitespace_rows": {
+        "parent_asin": 0
+      },
+      "union_top_level_field_count": 14,
+      "observed_field_names": [
+        "average_rating",
+        "bought_together",
+        "categories",
+        "description",
+        "details",
+        "features",
+        "images",
+        "main_category",
+        "parent_asin",
+        "price",
+        "rating_number",
+        "store",
+        "title",
+        "videos"
+      ],
+      "documented_field_names": [
+        "average_rating",
+        "bought_together",
+        "categories",
+        "description",
+        "details",
+        "features",
+        "images",
+        "main_category",
+        "parent_asin",
+        "price",
+        "rating_number",
+        "store",
+        "title",
+        "videos"
+      ],
+      "documented_fields_not_observed_in_scan": [],
+      "additional_observed_field_names": [],
+      "keys_per_record_distribution": {
+        "14": 112590
+      },
+      "column_inventory": [
+        {
+          "field": "average_rating",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 112590,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "numeric_aggregate",
+          "meaning": "Crawl-time product mean rating; not historical",
+          "expected_nonnull_raw_types": [
+            "integer",
+            "number"
+          ],
+          "observed_raw_type_counts": {
+            "number": 112590
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "bought_together",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 112590,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 0,
+          "absent_or_null_percent": 100.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "nested",
+          "meaning": "Website-recommended product bundles, if present",
+          "expected_nonnull_raw_types": [
+            "array"
+          ],
+          "observed_raw_type_counts": {
+            "null": 112590
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "categories",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 112590,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 0,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "nested",
+          "meaning": "Product category hierarchy",
+          "expected_nonnull_raw_types": [
+            "array"
+          ],
+          "observed_raw_type_counts": {
+            "array": 112590
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "description",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 93428,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 19162,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "nested",
+          "meaning": "Product description fragments",
+          "expected_nonnull_raw_types": [
+            "array"
+          ],
+          "observed_raw_type_counts": {
+            "array": 112590
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "details",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 4512,
+          "nonempty_value_rows": 108078,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "nested",
+          "meaning": "Variable product attributes",
+          "expected_nonnull_raw_types": [
+            "object"
+          ],
+          "observed_raw_type_counts": {
+            "object": 112590
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "features",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 95213,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 17377,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "nested",
+          "meaning": "Bullet-point product features",
+          "expected_nonnull_raw_types": [
+            "array"
+          ],
+          "observed_raw_type_counts": {
+            "array": 112590
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "images",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 112590,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "nested",
+          "meaning": "Product image descriptors, NOT user review images",
+          "expected_nonnull_raw_types": [
+            "array"
+          ],
+          "observed_raw_type_counts": {
+            "array": 112590
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "main_category",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 112590,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "categorical",
+          "meaning": "Product category shown in metadata, not the filename category",
+          "expected_nonnull_raw_types": [
+            "string"
+          ],
+          "observed_raw_type_counts": {
+            "string": 112590
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "parent_asin",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 112590,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "candidate_primary_key",
+          "meaning": "Parent product ID; uniqueness checked separately",
+          "expected_nonnull_raw_types": [
+            "string"
+          ],
+          "observed_raw_type_counts": {
+            "string": 112590
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "price",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 94886,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 17704,
+          "absent_or_null_percent": 84.275691,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "numeric_snapshot",
+          "meaning": "Price in USD at crawl time, not historical price",
+          "expected_nonnull_raw_types": [
+            "integer",
+            "number"
+          ],
+          "observed_raw_type_counts": {
+            "null": 94886,
+            "number": 17704
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "rating_number",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 112590,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "count_aggregate",
+          "meaning": "Crawl-time product rating count; not historical",
+          "expected_nonnull_raw_types": [
+            "integer"
+          ],
+          "observed_raw_type_counts": {
+            "integer": 112590
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "store",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 11331,
+          "blank_string_rows": 0,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 101259,
+          "absent_or_null_percent": 10.063949,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "categorical",
+          "meaning": "Store name or label",
+          "expected_nonnull_raw_types": [
+            "string"
+          ],
+          "observed_raw_type_counts": {
+            "null": 11331,
+            "string": 101259
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "title",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 12,
+          "empty_array_rows": 0,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 112578,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "text",
+          "meaning": "Product title, NOT a review headline",
+          "expected_nonnull_raw_types": [
+            "string"
+          ],
+          "observed_raw_type_counts": {
+            "string": 112590
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        },
+        {
+          "field": "videos",
+          "documented_in_reference": true,
+          "observed_in_scanned_scope": true,
+          "present_rows": 112590,
+          "absent_rows": 0,
+          "explicit_null_rows": 0,
+          "blank_string_rows": 0,
+          "empty_array_rows": 96708,
+          "empty_object_rows": 0,
+          "nonempty_value_rows": 15882,
+          "absent_or_null_percent": 0.0,
+          "present_percent_of_object_records": 100.0,
+          "logical_role": "nested",
+          "meaning": "Product video descriptors",
+          "expected_nonnull_raw_types": [
+            "array"
+          ],
+          "observed_raw_type_counts": {
+            "array": 112590
+          },
+          "reference_type_deviation_nonnull_rows": 0
+        }
+      ],
+      "field_types": {
+        "average_rating": {
+          "number": 112590
+        },
+        "bought_together": {
+          "null": 112590
+        },
+        "categories": {
+          "array": 112590
+        },
+        "description": {
+          "array": 112590
+        },
+        "details": {
+          "object": 112590
+        },
+        "features": {
+          "array": 112590
+        },
+        "images": {
+          "array": 112590
+        },
+        "main_category": {
+          "string": 112590
+        },
+        "parent_asin": {
+          "string": 112590
+        },
+        "price": {
+          "null": 94886,
+          "number": 17704
+        },
+        "rating_number": {
+          "integer": 112590
+        },
+        "store": {
+          "string": 101259,
+          "null": 11331
+        },
+        "title": {
+          "string": 112590
+        },
+        "videos": {
+          "array": 112590
+        }
+      },
+      "container_member_types": [
+        {
+          "field": "description",
+          "member_kind": "array_element",
+          "types": {
+            "string": 48557
+          }
+        },
+        {
+          "field": "details",
+          "member_kind": "object_value",
+          "types": {
+            "string": 615813
+          }
+        },
+        {
+          "field": "features",
+          "member_kind": "array_element",
+          "types": {
+            "string": 72554
+          }
+        },
+        {
+          "field": "images",
+          "member_kind": "array_element",
+          "types": {
+            "object": 549209
+          }
+        },
+        {
+          "field": "videos",
+          "member_kind": "array_element",
+          "types": {
+            "object": 40679
+          }
+        }
+      ],
+      "nested_containers": [
+        {
+          "field": "categories",
+          "container_type": "array",
+          "container_rows": 112590,
+          "empty_rows": 112590,
+          "total_items_or_keys": 0,
+          "max_size": 0,
+          "min_size": 0,
+          "mean_size": 0.0
+        },
+        {
+          "field": "description",
+          "container_type": "array",
+          "container_rows": 112590,
+          "empty_rows": 93428,
+          "total_items_or_keys": 48557,
+          "max_size": 152,
+          "min_size": 0,
+          "mean_size": 0.4312727595701217
+        },
+        {
+          "field": "details",
+          "container_type": "object",
+          "container_rows": 112590,
+          "empty_rows": 4512,
+          "total_items_or_keys": 615813,
+          "max_size": 23,
+          "min_size": 0,
+          "mean_size": 5.469517719158007
+        },
+        {
+          "field": "features",
+          "container_type": "array",
+          "container_rows": 112590,
+          "empty_rows": 95213,
+          "total_items_or_keys": 72554,
+          "max_size": 13,
+          "min_size": 0,
+          "mean_size": 0.644408917310596
+        },
+        {
+          "field": "images",
+          "container_type": "array",
+          "container_rows": 112590,
+          "empty_rows": 0,
+          "total_items_or_keys": 549209,
+          "max_size": 22,
+          "min_size": 1,
+          "mean_size": 4.87795541344702
+        },
+        {
+          "field": "videos",
+          "container_type": "array",
+          "container_rows": 112590,
+          "empty_rows": 96708,
+          "total_items_or_keys": 40679,
+          "max_size": 10,
+          "min_size": 0,
+          "mean_size": 0.36130206945554666
+        }
+      ],
+      "nested_child_types": [
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "",
+          "raw_type_occurrences": {
+            "string": 295
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Action",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Active Ingredients",
+          "raw_type_occurrences": {
+            "string": 820
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Adjustable Length",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Age Range (Description)",
+          "raw_type_occurrences": {
+            "string": 22929
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Age Range Description",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Alcohol Content",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Allergen Information",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Amperage",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Antenna",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Arch Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Are Batteries Included",
+          "raw_type_occurrences": {
+            "string": 16
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Assembly Required",
+          "raw_type_occurrences": {
+            "string": 29
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Assembly Required No",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Assembly Required Yes",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Assembly required",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Auto Part Position",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Auto Shutoff",
+          "raw_type_occurrences": {
+            "string": 17
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Back Style",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Band Color",
+          "raw_type_occurrences": {
+            "string": 33
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Band Length",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Band Material Type",
+          "raw_type_occurrences": {
+            "string": 32
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Band Size",
+          "raw_type_occurrences": {
+            "string": 15
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Band Width",
+          "raw_type_occurrences": {
+            "string": 14
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Base Type",
+          "raw_type_occurrences": {
+            "string": 35
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Batteries",
+          "raw_type_occurrences": {
+            "string": 491
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Batteries Included?",
+          "raw_type_occurrences": {
+            "string": 16
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Batteries Required?",
+          "raw_type_occurrences": {
+            "string": 52
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Batteries required",
+          "raw_type_occurrences": {
+            "string": 12
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Battery Cell Composition",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Battery Description",
+          "raw_type_occurrences": {
+            "string": 24
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Battery Life",
+          "raw_type_occurrences": {
+            "string": 75
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Binding",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Blade Color",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Blade Edge",
+          "raw_type_occurrences": {
+            "string": 69
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Blade Length",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Blade Material",
+          "raw_type_occurrences": {
+            "string": 293
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Blade Shape",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Blanket Form",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Body Shape",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Bottle Nipple Type",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Bottle Type",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Bowl Material",
+          "raw_type_occurrences": {
+            "string": 16
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Brand",
+          "raw_type_occurrences": {
+            "string": 72113
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Brand Name",
+          "raw_type_occurrences": {
+            "string": 12
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Breed Recommendation",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Bristle Material",
+          "raw_type_occurrences": {
+            "string": 205
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Bristle Type",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Brush Length",
+          "raw_type_occurrences": {
+            "string": 5
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Bulb Shape Size",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "CPSIA Cautionary Statement",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Cable Feature",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Cable Type",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Camera Lens Description",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Capacity",
+          "raw_type_occurrences": {
+            "string": 635
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Care instructions",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Cartoon Character",
+          "raw_type_occurrences": {
+            "string": 424
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Caster Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Center To Center Spacing",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Chain Type",
+          "raw_type_occurrences": {
+            "string": 5
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Charging Time",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Chocolate Type",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Clarity",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Clasp Type",
+          "raw_type_occurrences": {
+            "string": 7
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Closure Type",
+          "raw_type_occurrences": {
+            "string": 341
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Collection Name",
+          "raw_type_occurrences": {
+            "string": 9
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Color",
+          "raw_type_occurrences": {
+            "string": 11475
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Color Name",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Compatibility Options",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Compatible Devices",
+          "raw_type_occurrences": {
+            "string": 36
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Compatible Material",
+          "raw_type_occurrences": {
+            "string": 17
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Compatible Phone Models",
+          "raw_type_occurrences": {
+            "string": 47
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Component Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Configuration",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Connectivity Technology",
+          "raw_type_occurrences": {
+            "string": 30
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Connectivity technologies",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Connector Gender",
+          "raw_type_occurrences": {
+            "string": 6
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Connector Type",
+          "raw_type_occurrences": {
+            "string": 12
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Construction Type",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Contact Material",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Contains Liquid Contents",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Contributor",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Control Method",
+          "raw_type_occurrences": {
+            "string": 8
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Controller Type",
+          "raw_type_occurrences": {
+            "string": 6
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Corner Style",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Country of Origin",
+          "raw_type_occurrences": {
+            "string": 630
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Country/Region Of Origin",
+          "raw_type_occurrences": {
+            "string": 83
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Cover Material",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Coverage",
+          "raw_type_occurrences": {
+            "string": 2817
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Cuisine",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Cut Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Data Transfer Rate",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Date First Available",
+          "raw_type_occurrences": {
+            "string": 341
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Dental Floss Type",
+          "raw_type_occurrences": {
+            "string": 27
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Department",
+          "raw_type_occurrences": {
+            "string": 1470
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Desk design",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Diet Type",
+          "raw_type_occurrences": {
+            "string": 7
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Display Type",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Display resolution",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Domestic Shipping",
+          "raw_type_occurrences": {
+            "string": 52
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Dosage Form",
+          "raw_type_occurrences": {
+            "string": 58
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Duration",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Edition Number",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Educational Objective",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Electric fan design",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Embellishment",
+          "raw_type_occurrences": {
+            "string": 901
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Expected Blooming Period",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Extended Length",
+          "raw_type_occurrences": {
+            "string": 5
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Extension Length",
+          "raw_type_occurrences": {
+            "string": 7254
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Exterior Finish",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "External Testing Certification",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Eyelid Color Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Fabric Type",
+          "raw_type_occurrences": {
+            "string": 1784
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Fastener Material",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Fastener Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Ferrule Material",
+          "raw_type_occurrences": {
+            "string": 866
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Fill Material",
+          "raw_type_occurrences": {
+            "string": 7
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Filter Class",
+          "raw_type_occurrences": {
+            "string": 8
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Filter Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Finish",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Finish Type",
+          "raw_type_occurrences": {
+            "string": 6771
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Finish types",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Fishing Technique",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Fit Type",
+          "raw_type_occurrences": {
+            "string": 8
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Fit Type Universal Fit",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Flavor",
+          "raw_type_occurrences": {
+            "string": 521
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Form Factor",
+          "raw_type_occurrences": {
+            "string": 49
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Format",
+          "raw_type_occurrences": {
+            "string": 7
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Formulation Type",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Fragrance Concentration",
+          "raw_type_occurrences": {
+            "string": 490
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Frame Material",
+          "raw_type_occurrences": {
+            "string": 80
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Frame Material Aluminum, Nylon",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Frame Type",
+          "raw_type_occurrences": {
+            "string": 14
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Full Cure Time",
+          "raw_type_occurrences": {
+            "string": 37
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Furniture Finish",
+          "raw_type_occurrences": {
+            "string": 6
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Genre",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Grade Rating",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Grit Material",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Grit Number",
+          "raw_type_occurrences": {
+            "string": 19
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Grit Type",
+          "raw_type_occurrences": {
+            "string": 7
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Hair Type",
+          "raw_type_occurrences": {
+            "string": 26719
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Hand Orientation",
+          "raw_type_occurrences": {
+            "string": 29
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Handle Material",
+          "raw_type_occurrences": {
+            "string": 979
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Handle Type",
+          "raw_type_occurrences": {
+            "string": 27
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Hardware Platform",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Has Nonstick Coating",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Head Material",
+          "raw_type_occurrences": {
+            "string": 84
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Head Type",
+          "raw_type_occurrences": {
+            "string": 105
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Headphones Jack",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Heat Output",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Heater Surface Material",
+          "raw_type_occurrences": {
+            "string": 109
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Honey Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Human Interface Input",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Image Stabilization",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Import",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Import Designation",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Included Components",
+          "raw_type_occurrences": {
+            "string": 571
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Incontinence Protector Type",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Indoor/Outdoor Usage",
+          "raw_type_occurrences": {
+            "string": 6
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Ink Color",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Inner Material",
+          "raw_type_occurrences": {
+            "string": 156
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Input Voltage",
+          "raw_type_occurrences": {
+            "string": 7
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Installation Type",
+          "raw_type_occurrences": {
+            "string": 4452
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Installation Type Adhesive",
+          "raw_type_occurrences": {
+            "string": 6
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Installation Type Adhesi\u00f3n est\u00e1tica",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Installation Type Peel",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Installation Type Self-Adhesive",
+          "raw_type_occurrences": {
+            "string": 102
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Installation Type Stick",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Installation Type Water transfer",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Installation Type water transfer",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Instrument Key",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "International Protection Rating",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "International Shipping",
+          "raw_type_occurrences": {
+            "string": 52
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Is Autographed",
+          "raw_type_occurrences": {
+            "string": 5
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Is Cordless?",
+          "raw_type_occurrences": {
+            "string": 118
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Is Discontinued By Manufacturer",
+          "raw_type_occurrences": {
+            "string": 39527
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Is Dishwasher Safe",
+          "raw_type_occurrences": {
+            "string": 31
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Is Electric",
+          "raw_type_occurrences": {
+            "string": 122
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Is Foldable",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Is Microwaveable",
+          "raw_type_occurrences": {
+            "string": 7
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Is Oven Safe",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Is Product Expirable",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Is Stain Resistant",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Is Waterproof",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Is framed?",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item Diameter",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item Dimensions  LxWxH",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item Dimensions LxWxH",
+          "raw_type_occurrences": {
+            "string": 4276
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item Firmness Description",
+          "raw_type_occurrences": {
+            "string": 324
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item Form",
+          "raw_type_occurrences": {
+            "string": 32439
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item Hardness",
+          "raw_type_occurrences": {
+            "string": 7
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item Length",
+          "raw_type_occurrences": {
+            "string": 16
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item Package Dimensions L x W x H",
+          "raw_type_occurrences": {
+            "string": 6
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item Package Quantity",
+          "raw_type_occurrences": {
+            "string": 635
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item Volume",
+          "raw_type_occurrences": {
+            "string": 4193
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item Weight",
+          "raw_type_occurrences": {
+            "string": 7172
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item Weight 1 Kilograms",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item Weight 176.37 Pounds",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Item model number",
+          "raw_type_occurrences": {
+            "string": 17951
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Keyboard Description",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Lamp Type",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Language",
+          "raw_type_occurrences": {
+            "string": 141
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "League",
+          "raw_type_occurrences": {
+            "string": 6
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Lens Curvature Description",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Lens Material",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Lens Type",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Lid Material",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Light Color",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Light Source Type",
+          "raw_type_occurrences": {
+            "string": 113
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Light Type",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Lining Description",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Liquid Contents Description",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Liquid Volume",
+          "raw_type_occurrences": {
+            "string": 3783
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Load Capacity",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Magnification Strength",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Main Power Connector Type",
+          "raw_type_occurrences": {
+            "string": 6
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Manufacturer",
+          "raw_type_occurrences": {
+            "string": 19802
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Manufacturer Minimum Age (MONTHS)",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Manufacturer Part Number",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Manufacturer recommended age",
+          "raw_type_occurrences": {
+            "string": 198
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material",
+          "raw_type_occurrences": {
+            "string": 30942
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Acrylic",
+          "raw_type_occurrences": {
+            "string": 15
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Composition",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Feature",
+          "raw_type_occurrences": {
+            "string": 13153
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Glass",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Leather",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Leather, Polyvinyl Chloride",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Melamine",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Nail",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Nail art",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Nylon, Aluminum, Leather",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material PVC",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Paper",
+          "raw_type_occurrences": {
+            "string": 8
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Paper, Metal",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Paper, Plastic",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Pec",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Plastic",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Polyethylene",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Polyurethane",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Resin",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Silicone",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Silk",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Stainless Steel",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Type Free",
+          "raw_type_occurrences": {
+            "string": 923
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Vinyl",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Material Wood",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Max Temperature Setting",
+          "raw_type_occurrences": {
+            "string": 89
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Maximum Height Recommendation",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Maximum Range",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Maximum Rotational Speed",
+          "raw_type_occurrences": {
+            "string": 49
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Maximum Weight Recommendation",
+          "raw_type_occurrences": {
+            "string": 5
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Memory Storage Capacity",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Metal Stamp",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Metal Type",
+          "raw_type_occurrences": {
+            "string": 12
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Microphone Form Factor",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Model Info",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Model Name",
+          "raw_type_occurrences": {
+            "string": 46
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Moisture Needs",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Mounting Type",
+          "raw_type_occurrences": {
+            "string": 1966
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Mounting Type Desktop",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Mounting Type Free Standing",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Mounting Type Freestanding",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Mounting Type On Your Dressing Table,Bathroom",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Mounting Type Tabletop Mount",
+          "raw_type_occurrences": {
+            "string": 26
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Mounting Type Wall Mount",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Multiline Operation",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "National Stock Number",
+          "raw_type_occurrences": {
+            "string": 7
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Net Content Volume",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Net Content Weight",
+          "raw_type_occurrences": {
+            "string": 19
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Nominal Wall Thickness",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number Of Doors",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number Of Items",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number Of Pieces",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number Of Pockets",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Batteries",
+          "raw_type_occurrences": {
+            "string": 12
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Blades",
+          "raw_type_occurrences": {
+            "string": 317
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Buttons",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Channels",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Compartments",
+          "raw_type_occurrences": {
+            "string": 27
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Compartments 3",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Compartments 8",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Doors",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Drawers",
+          "raw_type_occurrences": {
+            "string": 9
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Handles",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Items",
+          "raw_type_occurrences": {
+            "string": 16964
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Keys",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Labels",
+          "raw_type_occurrences": {
+            "string": 13
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Light Sources",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Pieces",
+          "raw_type_occurrences": {
+            "string": 5306
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Players",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Ports",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Sets",
+          "raw_type_occurrences": {
+            "string": 80
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Shelves",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Speeds",
+          "raw_type_occurrences": {
+            "string": 23
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of Wheels",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of pieces",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Number of settings",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Occasion",
+          "raw_type_occurrences": {
+            "string": 1049
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Occupancy",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Occupant Capacity",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Opacity",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Opening Mechanism",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Operating System",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Operating Time",
+          "raw_type_occurrences": {
+            "string": 21
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Operation Mode",
+          "raw_type_occurrences": {
+            "string": 194
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Optical Zoom",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Orientation",
+          "raw_type_occurrences": {
+            "string": 10
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Other display features",
+          "raw_type_occurrences": {
+            "string": 12
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Our Recommended age",
+          "raw_type_occurrences": {
+            "string": 7
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Outer Material",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Output Current",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Output Voltage",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Package Dimensions",
+          "raw_type_occurrences": {
+            "string": 67825
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Package Information",
+          "raw_type_occurrences": {
+            "string": 2948
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Package Type",
+          "raw_type_occurrences": {
+            "string": 1133
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Package Weight",
+          "raw_type_occurrences": {
+            "string": 40
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Page Yield",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Pages",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Paint Type",
+          "raw_type_occurrences": {
+            "string": 7
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Paper Finish",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Part Number",
+          "raw_type_occurrences": {
+            "string": 31
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Pattern",
+          "raw_type_occurrences": {
+            "string": 1952
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Percentage assay",
+          "raw_type_occurrences": {
+            "string": 11
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Pile Height",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Pillow Type",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Plant or Animal Product Type",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Ply Rating",
+          "raw_type_occurrences": {
+            "string": 18
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Point Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Power Source",
+          "raw_type_occurrences": {
+            "string": 1621
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Primary Supplement Type",
+          "raw_type_occurrences": {
+            "string": 9
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Print media",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Printer Output",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Printing Technology",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Produce sold as",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Product Benefits",
+          "raw_type_occurrences": {
+            "string": 5721
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Product Care Instructions",
+          "raw_type_occurrences": {
+            "string": 358
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Product Dimensions",
+          "raw_type_occurrences": {
+            "string": 23277
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Product Grade",
+          "raw_type_occurrences": {
+            "string": 76
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Readout Accuracy",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Real Angle of View",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Recommended Uses For Product",
+          "raw_type_occurrences": {
+            "string": 2043
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Reminder",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Reusability",
+          "raw_type_occurrences": {
+            "string": 687
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Rim Size",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Room Type",
+          "raw_type_occurrences": {
+            "string": 93
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Ruling Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Runtime",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Scanner Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Scent",
+          "raw_type_occurrences": {
+            "string": 8428
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Screen Size",
+          "raw_type_occurrences": {
+            "string": 7
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Screen Surface Description",
+          "raw_type_occurrences": {
+            "string": 9
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Seasons",
+          "raw_type_occurrences": {
+            "string": 79
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Seat Height",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Seat Material Type",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Series Number",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Servings per Container",
+          "raw_type_occurrences": {
+            "string": 14
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Shade Material",
+          "raw_type_occurrences": {
+            "string": 20
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Shaft Material",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Shank Type",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Shape",
+          "raw_type_occurrences": {
+            "string": 2133
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Shape Heart",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Shape Heart, Flower",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Shape Irregular",
+          "raw_type_occurrences": {
+            "string": 50
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Shape Oblong",
+          "raw_type_occurrences": {
+            "string": 18
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Shape Rectangular",
+          "raw_type_occurrences": {
+            "string": 11
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Shape Round",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Shape Triangular",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Sheet Count",
+          "raw_type_occurrences": {
+            "string": 17
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Shell Type",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Shelves",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Size",
+          "raw_type_occurrences": {
+            "string": 3742
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Skill Level",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Skin Tone",
+          "raw_type_occurrences": {
+            "string": 1969
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Skin Type",
+          "raw_type_occurrences": {
+            "string": 11454
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Soil Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Sound Level",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Speaker Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Special Feature",
+          "raw_type_occurrences": {
+            "string": 7653
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Special Features",
+          "raw_type_occurrences": {
+            "string": 8
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Special Ingredients",
+          "raw_type_occurrences": {
+            "string": 86
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Special features",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Specialty",
+          "raw_type_occurrences": {
+            "string": 444
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Specific Uses For Product",
+          "raw_type_occurrences": {
+            "string": 84
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Specification Met",
+          "raw_type_occurrences": {
+            "string": 7
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Specifications",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Sport",
+          "raw_type_occurrences": {
+            "string": 52
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Sport Type",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Sterility Rating",
+          "raw_type_occurrences": {
+            "string": 13
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Stone Shape",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Strap Type",
+          "raw_type_occurrences": {
+            "string": 14
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Style",
+          "raw_type_occurrences": {
+            "string": 10667
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Style French",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Sub Brand",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Subwoofer Diameter",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Suitable Hair Color",
+          "raw_type_occurrences": {
+            "string": 29
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Sun Protection",
+          "raw_type_occurrences": {
+            "string": 205
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Sun Protection Factor",
+          "raw_type_occurrences": {
+            "string": 132
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Sunlight Exposure",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Supported Application",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Supported Standards",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation",
+          "raw_type_occurrences": {
+            "string": 231
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation Aluminum",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation Ceramic",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation Floor",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation Foil",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation Furniture",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation Glass",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation Metal",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation Nail",
+          "raw_type_occurrences": {
+            "string": 76
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation Nails",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation Paper with Sticker",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation Plastic",
+          "raw_type_occurrences": {
+            "string": 6
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation Wall",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation Window",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation nail",
+          "raw_type_occurrences": {
+            "string": 78
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation nails",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Surface Recommendation wall",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Switch Type",
+          "raw_type_occurrences": {
+            "string": 6
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "TV Size",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Table design",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Tank Volume",
+          "raw_type_occurrences": {
+            "string": 39
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Target Audience",
+          "raw_type_occurrences": {
+            "string": 237
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Target Species",
+          "raw_type_occurrences": {
+            "string": 13
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Target gender",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Tea Variety",
+          "raw_type_occurrences": {
+            "string": 5
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Team Name",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Terminal",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Theme",
+          "raw_type_occurrences": {
+            "string": 685
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Thread Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Tool Flute Type",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Top Material Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Top Style",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Total Eaches",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Total USB Ports",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Towel form type",
+          "raw_type_occurrences": {
+            "string": 85
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Type",
+          "raw_type_occurrences": {
+            "string": 919
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "UPC",
+          "raw_type_occurrences": {
+            "string": 60252
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "USDA Hardiness Zone",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Ultraviolet Light Protection",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Unit Count",
+          "raw_type_occurrences": {
+            "string": 23855
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Units",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Usage",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Use for",
+          "raw_type_occurrences": {
+            "string": 1806
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Valve Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Variety",
+          "raw_type_occurrences": {
+            "string": 24
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Vehicle Service Type",
+          "raw_type_occurrences": {
+            "string": 4
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Ventilation Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Voltage",
+          "raw_type_occurrences": {
+            "string": 26
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Volume",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Waist (cm)",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Wall Art Form",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Warranty Description",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Water Resistance Level",
+          "raw_type_occurrences": {
+            "string": 1181
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Wattage",
+          "raw_type_occurrences": {
+            "string": 68
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Weave Type",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Weight",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Weight Limit",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Whats in the box",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Wheel Size",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Whistling",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Wireless Communication Standard",
+          "raw_type_occurrences": {
+            "string": 2
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Wireless Communication Technology",
+          "raw_type_occurrences": {
+            "string": 1
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "With Lid",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "details",
+          "location": "object",
+          "child_key": "Year",
+          "raw_type_occurrences": {
+            "string": 3
+          }
+        },
+        {
+          "field": "images",
+          "location": "array_object",
+          "child_key": "hi_res",
+          "raw_type_occurrences": {
+            "null": 67863,
+            "string": 481346
+          }
+        },
+        {
+          "field": "images",
+          "location": "array_object",
+          "child_key": "large",
+          "raw_type_occurrences": {
+            "string": 549209
+          }
+        },
+        {
+          "field": "images",
+          "location": "array_object",
+          "child_key": "thumb",
+          "raw_type_occurrences": {
+            "string": 549209
+          }
+        },
+        {
+          "field": "images",
+          "location": "array_object",
+          "child_key": "variant",
+          "raw_type_occurrences": {
+            "string": 549209
+          }
+        },
+        {
+          "field": "videos",
+          "location": "array_object",
+          "child_key": "title",
+          "raw_type_occurrences": {
+            "string": 40679
+          }
+        },
+        {
+          "field": "videos",
+          "location": "array_object",
+          "child_key": "url",
+          "raw_type_occurrences": {
+            "string": 40679
+          }
+        },
+        {
+          "field": "videos",
+          "location": "array_object",
+          "child_key": "user_id",
+          "raw_type_occurrences": {
+            "string": 40679
+          }
+        }
+      ],
+      "nested_child_key_limit_per_field_and_location": 5000,
+      "nested_child_key_tracking_overflow": [],
+      "readable_json_values": 112590,
+      "excluded_from_object_records": 0,
+      "line_accounting_valid": true,
+      "reached_eof": true,
+      "has_structural_input_issues": false,
+      "scanned_content_sha256": "1cfbdf6d2ccf9c3ac52a4508b15f31f8f340508a245b65c3e3b5f461e06e97ef",
+      "hash_scope": "Scanned decompressed bytes, including original line endings and BOM if present.",
+      "scan_mode": "entire_supplied_file",
+      "elapsed_seconds": 5.303
+    }
+  },
+  "identifiers": {
+    "review_users": {
+      "distinct_indexable_values": 631986,
+      "indexed_row_occurrences": 701528,
+      "object_rows_denominator": 701528,
+      "rows_without_indexable_id": 0,
+      "absent_key_rows": 0,
+      "explicit_null_rows": 0,
+      "wrong_type_rows": 0,
+      "blank_string_rows": 0,
+      "invalid_utf8_rows": 0,
+      "indexed_with_surrounding_whitespace_rows": 0,
+      "indexable_percent_of_object_rows": 100.0,
+      "values_occurring_more_than_once": 48433,
+      "repeated_occurrences_after_first": 69542
+    },
+    "review_asins": {
+      "distinct_indexable_values": 115709,
+      "indexed_row_occurrences": 701528,
+      "object_rows_denominator": 701528,
+      "rows_without_indexable_id": 0,
+      "absent_key_rows": 0,
+      "explicit_null_rows": 0,
+      "wrong_type_rows": 0,
+      "blank_string_rows": 0,
+      "invalid_utf8_rows": 0,
+      "indexed_with_surrounding_whitespace_rows": 0,
+      "indexable_percent_of_object_rows": 100.0,
+      "values_occurring_more_than_once": 66850,
+      "repeated_occurrences_after_first": 585819
+    },
+    "review_products": {
+      "distinct_indexable_values": 112565,
+      "indexed_row_occurrences": 701528,
+      "object_rows_denominator": 701528,
+      "rows_without_indexable_id": 0,
+      "absent_key_rows": 0,
+      "explicit_null_rows": 0,
+      "wrong_type_rows": 0,
+      "blank_string_rows": 0,
+      "invalid_utf8_rows": 0,
+      "indexed_with_surrounding_whitespace_rows": 0,
+      "indexable_percent_of_object_rows": 100.0,
+      "values_occurring_more_than_once": 64999,
+      "repeated_occurrences_after_first": 588963
+    },
+    "metadata_products": {
+      "distinct_indexable_values": 112590,
+      "indexed_row_occurrences": 112590,
+      "object_rows_denominator": 112590,
+      "rows_without_indexable_id": 0,
+      "absent_key_rows": 0,
+      "explicit_null_rows": 0,
+      "wrong_type_rows": 0,
+      "blank_string_rows": 0,
+      "invalid_utf8_rows": 0,
+      "indexed_with_surrounding_whitespace_rows": 0,
+      "indexable_percent_of_object_rows": 100.0,
+      "values_occurring_more_than_once": 0,
+      "repeated_occurrences_after_first": 0
+    }
+  },
+  "identifier_definitions": [
+    {
+      "file_role": "reviews",
+      "source_field": "user_id",
+      "analytical_role": "identifier",
+      "meaning": "Reviewer identifier; not a real-world identity",
+      "index_table": "review_users"
+    },
+    {
+      "file_role": "reviews",
+      "source_field": "asin",
+      "analytical_role": "identifier",
+      "meaning": "Identifier of the reviewed product variant",
+      "index_table": "review_asins"
+    },
+    {
+      "file_role": "reviews",
+      "source_field": "parent_asin",
+      "analytical_role": "join_key",
+      "meaning": "Product-parent ID used to join to metadata",
+      "index_table": "review_products"
+    },
+    {
+      "file_role": "metadata",
+      "source_field": "parent_asin",
+      "analytical_role": "candidate_primary_key",
+      "meaning": "Parent product ID; uniqueness checked separately",
+      "index_table": "metadata_products"
+    }
+  ],
+  "relationships": {
+    "review_join_field": "parent_asin",
+    "metadata_join_field": "parent_asin",
+    "join_comparison": "exact_string_equality_no_normalization",
+    "shared_product_ids": 112565,
+    "review_product_ids_without_metadata": 0,
+    "metadata_product_ids_without_reviews": 25,
+    "review_rows_with_matching_metadata_id": 701528,
+    "metadata_ids_with_multiple_rows": 0,
+    "max_metadata_rows_per_product_id": 1,
+    "distinct_asin_parent_pairs": 115709,
+    "review_rows_with_usable_asin_parent_pair": 701528,
+    "review_rows_without_usable_asin_parent_pair": 0,
+    "distinct_asins_with_parent_link": 115709,
+    "distinct_parents_with_asin_link": 112565,
+    "asin_parent_pairs_occurring_more_than_once": 66850,
+    "asins_linked_to_multiple_parents": 0,
+    "parents_linked_to_multiple_asins": 995,
+    "potential_inner_join_rows": 701528,
+    "matched_share_of_reviews_with_indexable_product_id": 1.0,
+    "metadata_key_unique_among_indexable_ids": true,
+    "metadata_key_complete_in_scanned_scope": true,
+    "metadata_parent_key_unique_and_complete_in_scanned_scope": true,
+    "metadata_rows_without_usable_parent_key": 0,
+    "metadata_extra_rows_after_first_per_parent": 0,
+    "review_rows_matching_multiple_metadata_rows": 0,
+    "extra_inner_join_rows_from_metadata_repetition": 0,
+    "potential_left_join_rows": 701528,
+    "review_object_rows_denominator": 701528,
+    "review_rows_with_usable_parent_id": 701528,
+    "review_rows_without_usable_parent_id": 0,
+    "review_rows_with_usable_parent_but_no_metadata": 0,
+    "review_rows_without_metadata_match_total": 0,
+    "review_distinct_usable_parent_ids_denominator": 112565,
+    "metadata_distinct_usable_parent_ids_denominator": 112590,
+    "matched_percent_of_all_review_object_rows": 100.0,
+    "matched_percent_of_review_rows_with_usable_parent_id": 100.0,
+    "matched_percent_of_distinct_review_parent_ids": 100.0,
+    "both_input_files_reached_eof": true,
+    "coverage_scope_note": "Coverage applies only to parsed JSON-object rows in these two scanned inputs. Preview or independently sampled files cannot establish full-dataset coverage. Numerators count original review rows, before any join multiplication; unusable parent IDs are not matched or normalized.",
+    "interpretation": "All results refer to scanned objects only; preview mode does not establish full-file key uniqueness or completeness. Multiple metadata rows for one parent may multiply joined review rows, but do not prove full-record duplicates. Join row counts are projected without materializing a join."
+  },
+  "temporal_ordering": {
+    "time_field": "timestamp",
+    "grouping_field": "parent_asin",
+    "ordering": "exact_raw_epoch_integer_within_each_parent",
+    "timestamp_groups": 694174,
+    "review_rows_with_indexable_parent_and_convertible_timestamp": 701528,
+    "parents_with_duplicate_timestamps": 4947,
+    "timestamp_groups_with_multiple_reviews": 6205,
+    "review_rows_in_tied_timestamp_groups": 13559,
+    "extra_timestamp_occurrences_after_first": 7354,
+    "parents_with_at_least_15_timed_reviews_not_final_eligibility": 8481,
+    "parents_with_tie_across_positions_5_and_6": 321,
+    "parents_with_tie_across_positions_15_and_16": 92,
+    "all_convertible_review_times_aligned_to_whole_seconds": false,
+    "whole_second_aligned_convertible_rows": 166694,
+    "total_convertible_review_rows": 701528,
+    "scan_scope": "entire_supplied_file",
+    "note": "Ties are based on identical raw timestamps and exact nonblank parent IDs. Only successfully parsed review objects with a convertible timestamp and usable parent are eligible for tie counting. These counts do not establish which reviews qualify for the modeling task; no sorting or tie-breaking of individual reviews is performed."
+  },
+  "modality_inventory": [
+    {
+      "modality": "review_text",
+      "source_file_role": "reviews",
+      "source_unit": "review_record",
+      "source_fields": [
+        "title",
+        "text"
+      ],
+      "observed_fields_in_scan": [
+        "title",
+        "text"
+      ],
+      "not_observed_in_scan": [],
+      "source_field_status": "all_fields_observed_in_scan",
+      "source_object_rows": 701528,
+      "requires_review_metadata_join": false,
+      "join_field": null,
+      "review_rows_with_any_metadata_match": null,
+      "meaning_and_limitations": "Review headline/body; one or both can be missing, null or blank.",
+      "availability_note": "A source field being observed even once is NOT proof of availability for every sample. Metadata joins alone do not guarantee the specific product field is usable. S22 will count modality availability."
+    },
+    {
+      "modality": "review_rating",
+      "source_file_role": "reviews",
+      "source_unit": "review_record",
+      "source_fields": [
+        "rating"
+      ],
+      "observed_fields_in_scan": [
+        "rating"
+      ],
+      "not_observed_in_scan": [],
+      "source_field_status": "all_fields_observed_in_scan",
+      "source_object_rows": 701528,
+      "requires_review_metadata_join": false,
+      "join_field": null,
+      "review_rows_with_any_metadata_match": null,
+      "meaning_and_limitations": "The rating of this review; not the product-page average rating.",
+      "availability_note": "A source field being observed even once is NOT proof of availability for every sample. Metadata joins alone do not guarantee the specific product field is usable. S22 will count modality availability."
+    },
+    {
+      "modality": "review_images",
+      "source_file_role": "reviews",
+      "source_unit": "review_record",
+      "source_fields": [
+        "images"
+      ],
+      "observed_fields_in_scan": [
+        "images"
+      ],
+      "not_observed_in_scan": [],
+      "source_field_status": "all_fields_observed_in_scan",
+      "source_object_rows": 701528,
+      "requires_review_metadata_join": false,
+      "join_field": null,
+      "review_rows_with_any_metadata_match": null,
+      "meaning_and_limitations": "Descriptors and URLs of reviewer-posted images; actual media is not validated.",
+      "availability_note": "A source field being observed even once is NOT proof of availability for every sample. Metadata joins alone do not guarantee the specific product field is usable. S22 will count modality availability."
+    },
+    {
+      "modality": "review_time",
+      "source_file_role": "reviews",
+      "source_unit": "review_record",
+      "source_fields": [
+        "timestamp"
+      ],
+      "observed_fields_in_scan": [
+        "timestamp"
+      ],
+      "not_observed_in_scan": [],
+      "source_field_status": "all_fields_observed_in_scan",
+      "source_object_rows": 701528,
+      "requires_review_metadata_join": false,
+      "join_field": null,
+      "review_rows_with_any_metadata_match": null,
+      "meaning_and_limitations": "Review event time; conversion and unit assumptions are audited separately.",
+      "availability_note": "A source field being observed even once is NOT proof of availability for every sample. Metadata joins alone do not guarantee the specific product field is usable. S22 will count modality availability."
+    },
+    {
+      "modality": "user_item_interaction",
+      "source_file_role": "reviews",
+      "source_unit": "review_record",
+      "source_fields": [
+        "user_id",
+        "asin",
+        "parent_asin",
+        "verified_purchase",
+        "helpful_vote"
+      ],
+      "observed_fields_in_scan": [
+        "user_id",
+        "asin",
+        "parent_asin",
+        "verified_purchase",
+        "helpful_vote"
+      ],
+      "not_observed_in_scan": [],
+      "source_field_status": "all_fields_observed_in_scan",
+      "source_object_rows": 701528,
+      "requires_review_metadata_join": false,
+      "join_field": null,
+      "review_rows_with_any_metadata_match": null,
+      "meaning_and_limitations": "A collected review is a user-item interaction; this is not a clickstream or a complete history of purchases or votes.",
+      "availability_note": "A source field being observed even once is NOT proof of availability for every sample. Metadata joins alone do not guarantee the specific product field is usable. S22 will count modality availability."
+    },
+    {
+      "modality": "product_metadata",
+      "source_file_role": "metadata",
+      "source_unit": "metadata_product_record",
+      "source_fields": [
+        "main_category",
+        "title",
+        "features",
+        "description",
+        "store",
+        "categories",
+        "details",
+        "bought_together",
+        "videos",
+        "average_rating",
+        "rating_number"
+      ],
+      "observed_fields_in_scan": [
+        "main_category",
+        "title",
+        "features",
+        "description",
+        "store",
+        "categories",
+        "details",
+        "bought_together",
+        "videos",
+        "average_rating",
+        "rating_number"
+      ],
+      "not_observed_in_scan": [],
+      "source_field_status": "all_fields_observed_in_scan",
+      "source_object_rows": 112590,
+      "requires_review_metadata_join": true,
+      "join_field": "parent_asin",
+      "review_rows_with_any_metadata_match": 701528,
+      "meaning_and_limitations": "Product-page/crawl-time metadata. average_rating and rating_number are current aggregates and must NOT be assumed available at earlier review times.",
+      "availability_note": "A source field being observed even once is NOT proof of availability for every sample. Metadata joins alone do not guarantee the specific product field is usable. S22 will count modality availability."
+    },
+    {
+      "modality": "product_images",
+      "source_file_role": "metadata",
+      "source_unit": "metadata_product_record",
+      "source_fields": [
+        "images"
+      ],
+      "observed_fields_in_scan": [
+        "images"
+      ],
+      "not_observed_in_scan": [],
+      "source_field_status": "all_fields_observed_in_scan",
+      "source_object_rows": 112590,
+      "requires_review_metadata_join": true,
+      "join_field": "parent_asin",
+      "review_rows_with_any_metadata_match": 701528,
+      "meaning_and_limitations": "Product-page image descriptors and URLs; different from review images.",
+      "availability_note": "A source field being observed even once is NOT proof of availability for every sample. Metadata joins alone do not guarantee the specific product field is usable. S22 will count modality availability."
+    },
+    {
+      "modality": "product_price",
+      "source_file_role": "metadata",
+      "source_unit": "metadata_product_record",
+      "source_fields": [
+        "price"
+      ],
+      "observed_fields_in_scan": [
+        "price"
+      ],
+      "not_observed_in_scan": [],
+      "source_field_status": "all_fields_observed_in_scan",
+      "source_object_rows": 112590,
+      "requires_review_metadata_join": true,
+      "join_field": "parent_asin",
+      "review_rows_with_any_metadata_match": 701528,
+      "meaning_and_limitations": "Product-page crawl-time price, not the price at each review timestamp.",
+      "availability_note": "A source field being observed even once is NOT proof of availability for every sample. Metadata joins alone do not guarantee the specific product field is usable. S22 will count modality availability."
+    }
+  ],
+  "modality_coverage": [
+    {
+      "modality": "review_text",
+      "measurement_level": "review_record",
+      "available_records": 701528,
+      "denominator_records": 701528,
+      "unavailable_records": 0,
+      "available_percent": 100.0,
+      "unambiguous_available_records": null,
+      "unambiguous_available_percent": null,
+      "operational_definition": "nonblank review title OR body",
+      "scan_scope": "entire_supplied_file"
+    },
+    {
+      "modality": "review_rating",
+      "measurement_level": "review_record",
+      "available_records": 701528,
+      "denominator_records": 701528,
+      "unavailable_records": 0,
+      "available_percent": 100.0,
+      "unambiguous_available_records": null,
+      "unambiguous_available_percent": null,
+      "operational_definition": "finite numeric rating between 1 and 5 (not boolean)",
+      "scan_scope": "entire_supplied_file"
+    },
+    {
+      "modality": "review_images",
+      "measurement_level": "review_record",
+      "available_records": 59684,
+      "denominator_records": 701528,
+      "unavailable_records": 641844,
+      "available_percent": 8.507715,
+      "unambiguous_available_records": null,
+      "unambiguous_available_percent": null,
+      "operational_definition": "at least one image descriptor with a nonblank URL reference",
+      "scan_scope": "entire_supplied_file"
+    },
+    {
+      "modality": "review_time",
+      "measurement_level": "review_record",
+      "available_records": 701528,
+      "denominator_records": 701528,
+      "unavailable_records": 0,
+      "available_percent": 100.0,
+      "unambiguous_available_records": null,
+      "unambiguous_available_percent": null,
+      "operational_definition": "timestamp successfully converted using configured epoch unit",
+      "scan_scope": "entire_supplied_file"
+    },
+    {
+      "modality": "user_item_interaction",
+      "measurement_level": "review_record",
+      "available_records": 701528,
+      "denominator_records": 701528,
+      "unavailable_records": 0,
+      "available_percent": 100.0,
+      "unambiguous_available_records": null,
+      "unambiguous_available_percent": null,
+      "operational_definition": "both user_id and asin are usable nonblank strings",
+      "scan_scope": "entire_supplied_file"
+    },
+    {
+      "modality": "review_text_body",
+      "measurement_level": "review_record",
+      "available_records": 700808,
+      "denominator_records": 701528,
+      "unavailable_records": 720,
+      "available_percent": 99.897367,
+      "unambiguous_available_records": null,
+      "unambiguous_available_percent": null,
+      "operational_definition": "nonblank review body only; supplementary diagnostic",
+      "scan_scope": "entire_supplied_file"
+    },
+    {
+      "modality": "product_metadata",
+      "measurement_level": "metadata_record",
+      "available_records": 112590,
+      "denominator_records": 112590,
+      "unavailable_records": 0,
+      "available_percent": 100.0,
+      "unambiguous_available_records": null,
+      "unambiguous_available_percent": null,
+      "operational_definition": "at least one nonempty descriptive product field; excludes price/rating aggregates",
+      "scan_scope": "entire_supplied_file"
+    },
+    {
+      "modality": "product_images",
+      "measurement_level": "metadata_record",
+      "available_records": 112590,
+      "denominator_records": 112590,
+      "unavailable_records": 0,
+      "available_percent": 100.0,
+      "unambiguous_available_records": null,
+      "unambiguous_available_percent": null,
+      "operational_definition": "at least one product-image descriptor with a nonblank URL reference",
+      "scan_scope": "entire_supplied_file"
+    },
+    {
+      "modality": "product_price",
+      "measurement_level": "metadata_record",
+      "available_records": 17704,
+      "denominator_records": 112590,
+      "unavailable_records": 94886,
+      "available_percent": 15.724309,
+      "unambiguous_available_records": null,
+      "unambiguous_available_percent": null,
+      "operational_definition": "finite nonnegative numeric crawl-time product price (not boolean)",
+      "scan_scope": "entire_supplied_file"
+    },
+    {
+      "modality": "product_metadata",
+      "measurement_level": "review_record_after_parent_join",
+      "available_records": 701528,
+      "denominator_records": 701528,
+      "unavailable_records": 0,
+      "available_percent": 100.0,
+      "unambiguous_available_records": 701528,
+      "unambiguous_available_percent": 100.0,
+      "operational_definition": "exact parent_asin match AND at least one nonempty descriptive product field; excludes price/rating aggregates; available means AT LEAST ONE matching metadata row; unique-parent-match coverage excludes parents with repeated metadata rows",
+      "scan_scope": "entire_supplied_file"
+    },
+    {
+      "modality": "product_images",
+      "measurement_level": "review_record_after_parent_join",
+      "available_records": 701528,
+      "denominator_records": 701528,
+      "unavailable_records": 0,
+      "available_percent": 100.0,
+      "unambiguous_available_records": 701528,
+      "unambiguous_available_percent": 100.0,
+      "operational_definition": "exact parent_asin match AND at least one product-image descriptor with a nonblank URL reference; available means AT LEAST ONE matching metadata row; unique-parent-match coverage excludes parents with repeated metadata rows",
+      "scan_scope": "entire_supplied_file"
+    },
+    {
+      "modality": "product_price",
+      "measurement_level": "review_record_after_parent_join",
+      "available_records": 185623,
+      "denominator_records": 701528,
+      "unavailable_records": 515905,
+      "available_percent": 26.459813,
+      "unambiguous_available_records": 185623,
+      "unambiguous_available_percent": 26.459813,
+      "operational_definition": "exact parent_asin match AND finite nonnegative numeric crawl-time product price (not boolean); available means AT LEAST ONE matching metadata row; unique-parent-match coverage excludes parents with repeated metadata rows",
+      "scan_scope": "entire_supplied_file"
+    }
+  ],
+  "index_path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\data\\derived\\structure\\20261101T045111Z_23f309f5\\All_Beauty\\identifiers.sqlite",
+  "output_path": "C:\\Users\\User\\Documents\\amazon-reviews-analytics\\reports\\phase1\\structure\\20261101T045111Z_23f309f5\\All_Beauty",
+  "source_provenance": {
+    "dataset": "Amazon Reviews 2023",
+    "publisher": "McAuley Lab, UC San Diego",
+    "per_category_urls": {
+      "Electronics": {
+        "review_url": "https://datarepo.eng.ucsd.edu/mcauley_group/data/amazon_2023/raw/review_categories/Electronics.jsonl.gz",
+        "metadata_url": "https://datarepo.eng.ucsd.edu/mcauley_group/data/amazon_2023/raw/meta_categories/meta_Electronics.jsonl.gz"
+      },
+      "Beauty_and_Personal_Care": {
+        "review_url": "https://datarepo.eng.ucsd.edu/mcauley_group/data/amazon_2023/raw/review_categories/Beauty_and_Personal_Care.jsonl.gz",
+        "metadata_url": "https://datarepo.eng.ucsd.edu/mcauley_group/data/amazon_2023/raw/meta_categories/meta_Beauty_and_Personal_Care.jsonl.gz"
+      },
+      "Appliances": {
+        "review_url": "https://datarepo.eng.ucsd.edu/mcauley_group/data/amazon_2023/raw/review_categories/Appliances.jsonl.gz",
+        "metadata_url": "https://datarepo.eng.ucsd.edu/mcauley_group/data/amazon_2023/raw/meta_categories/meta_Appliances.jsonl.gz"
+      },
+      "All_Beauty": {
+        "review_url": "https://datarepo.eng.ucsd.edu/mcauley_group/data/amazon_2023/raw/review_categories/All_Beauty.jsonl.gz",
+        "metadata_url": "https://datarepo.eng.ucsd.edu/mcauley_group/data/amazon_2023/raw/meta_categories/meta_All_Beauty.jsonl.gz"
+      }
+    }
+  }
+}

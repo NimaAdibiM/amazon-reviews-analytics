@@ -1,1 +1,2 @@
-matplotlib==3.10.8
+# Exact plotting dependency used by the one-click EDA runner
+-r phase1_eda_delivery/requirements.txt
