@@ -1,0 +1,83 @@
+{
+  "level": "REAL_TRAIN_SUBSET_EXPERIMENT",
+  "seed": 42,
+  "documents": "data/stage_a_train/balanced/text_documents.csv.gz",
+  "numeric": "data/stage_a_train/balanced/features_scaled.csv.gz",
+  "feature_contract": "data/stage_a_train/balanced/feature_contract.json",
+  "scaler": "data/stage_a_train/balanced/scaler_train.json",
+  "cohorts": [
+    "data/stage_a_train/balanced/reviews_cohort.jsonl"
+  ],
+  "models": {
+    "bge": {
+      "model_dir": "models/bge",
+      "batch_size": 16,
+      "normalize": true,
+      "chunking": false,
+      "tie_sensitivity": true,
+      "device": "auto",
+      "seed": 42,
+      "max_chunks_per_review": 1024
+    },
+    "e5": {
+      "model_dir": "models/e5",
+      "batch_size": 16,
+      "normalize": true,
+      "chunking": false,
+      "tie_sensitivity": true,
+      "device": "auto",
+      "seed": 42,
+      "max_chunks_per_review": 1024
+    }
+  },
+  "max_products": 4000,
+  "fit_max_products": 4000,
+  "fit_text_bytes": 67108864,
+  "max_document_bytes": 2097152,
+  "max_input_bytes": 268435456,
+  "batch_products": 16,
+  "pca_k": 3,
+  "export_sparse": true,
+  "classical": [
+    {
+      "analyzer": "word",
+      "min_df": 2,
+      "max_df": 0.95,
+      "max_features": 50000,
+      "sublinear_tf": true,
+      "k": 32,
+      "normalize": true,
+      "max_sparse_bytes": 536870912,
+      "max_fit_work_bytes": 2147483648,
+      "name": "unigram",
+      "ngram_range": [
+        1,
+        1
+      ]
+    },
+    {
+      "analyzer": "word",
+      "min_df": 2,
+      "max_df": 0.95,
+      "max_features": 50000,
+      "sublinear_tf": true,
+      "k": 32,
+      "normalize": true,
+      "max_sparse_bytes": 536870912,
+      "max_fit_work_bytes": 2147483648,
+      "name": "bigram",
+      "ngram_range": [
+        1,
+        2
+      ]
+    }
+  ],
+  "fusion": [
+    {
+      "name": "balanced_example",
+      "text_space": "tfidf_svd_bigram",
+      "text_weight": 0.5,
+      "numeric_weight": 0.5
+    }
+  ]
+}

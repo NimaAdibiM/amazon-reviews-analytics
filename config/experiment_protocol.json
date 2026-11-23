@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "selection": "MODEL_SELECTION_PENDING",
+  "fit_split": "train",
+  "seed": 42,
+  "sample_views": [
+    "balanced",
+    "natural"
+  ],
+  "model_ids": [
+    "BAAI/bge-small-en-v1.5",
+    "intfloat/multilingual-e5-small"
+  ],
+  "same_keys_required": true,
+  "e5_prefix": "query: ",
+  "quality_ground_truth": "Human-audited review pairs; similarity in [0,1]; reviewer identity required; no rating pseudo-labels",
+  "quality_metrics": [
+    "Spearman correlation with human labels",
+    "paired bootstrap interval exploratory; dependence requires hub review"
+  ],
+  "hard_metrics": [
+    "valid/empty counts",
+    "token lengths",
+    "truncated review share and dropped tokens",
+    "category coverage",
+    "Unicode handling",
+    "finite vectors"
+  ],
+  "resource_metrics": [
+    "wall_seconds",
+    "sampled_peak_RSS",
+    "peak_cuda_memory_when_available",
+    "products_per_second",
+    "artifact_bytes"
+  ],
+  "language_status": [
+    "known",
+    "unknown",
+    "mixed",
+    "short"
+  ],
+  "language_method": "manual audit pending; no Latin-script equals English inference",
+  "svd_k_candidates": [
+    32,
+    64,
+    128,
+    256
+  ],
+  "svd_seeds": [
+    42,
+    43
+  ],
+  "tfidf_min_df_candidates": [
+    2,
+    5
+  ],
+  "tfidf_max_features_candidates": [
+    50000,
+    100000
+  ],
+  "tfidf_sublinear_candidates": [
+    false,
+    true
+  ],
+  "tfidf_max_df": 0.95,
+  "ngram_candidates": [
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ]
+  ],
+  "char_sensitivity": "optional char_wb [3,5] with explicit reason and resource guard",
+  "winner_rule": "No automatic winner. Provisional choice only after hub reviews valid semantic labels, language coverage, failures and uncertainty. No test or future outcome access.",
+  "weights": "Examples only; final selection pending hub",
+  "full_run_authorized": false
+}
