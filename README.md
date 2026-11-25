@@ -1,42 +1,55 @@
-# Amazon Reviews 2023 — Data Processing and Feature Representation
+# تحلیل داده ـ فاز دوم | Amazon Reviews’23
 
-Python implementation for preparing product-level review data and constructing numerical and text representations for downstream analysis. The pipeline targets four Amazon Reviews 2023 categories: Electronics, Beauty_and_Personal_Care, Appliances, and All_Beauty.
+**دانشجو:** نیما ادیبی معتمد  |  **شماره دانشجویی:** `403100387`
 
-## Project structure
+این بسته برای مطالعه و ارزیابی فاز دوم پروژه تهیه شده است. ابتدا **`reports/phase2.pdf`** را بخوانید. این فایل تنها نسخهٔ تحویلی گزارش است. کدهای اصلی، تنظیمات، فهرست ویژگی‌ها، نمودارهای کاهش بُعد و خوشه‌بندی و جدول‌های نتایج نیز در پوشه‌های مستقل و نام‌گذاری‌شده بر اساس کارکرد قرار گرفته‌اند.
 
-### `data_preparation/`
+## راهنمای فایل‌ها
 
-| File | Responsibility |
-| --- | --- |
-| `scan_reviews.py` | Entry point for scanning the four review categories. |
-| `ingest.py` | Constructs product-level review cohorts using bounded, disk-backed indexing. |
-| `metadata.py` | Reads and audits product metadata separately from prediction-time features. |
-| `features.py` | Computes product features from the first five observed reviews. |
-| `split_scale.py` | Assigns product splits and fits numerical scaling on training data. |
-| `prepare.py` | Coordinates feature generation, table exports, and data-quality summaries. |
-| `verify.py` | Checks prepared outputs, joins, and recorded file hashes. |
+| مسیر | کاربرد |
+|---|---|
+| `reports/phase2.pdf` | گزارش فارسی فاز دوم، شامل روش، اعداد، نمودارها و نتیجه‌گیری |
+| `data_preparation/` | خواندن داده‌های نقد و فراداده، پالایش و مهندسی ویژگی، split و مقیاس‌بندی |
+| `feature_representation/` | تبدیل متن به TF-IDF، کاهش بُعد با TruncatedSVD، PCA برای نمایش، BGE و E5 |
+| `clustering/` | K-Means، MiniBatchKMeans، روش سلسله‌مراتبی و DBSCAN؛ معیارها و پایداری |
+| `analysis/` | اجرای یکپارچهٔ تحلیل و اعتبارسنجی ورودی‌های واقعی |
+| `figures/` | شش نمودار مورد استفاده در گزارش، شامل نمودار واریانس SVD |
+| `results/` | جدول‌های عددی، ویژگی‌های خوشه‌ها و رسیدهای انتخاب/اعتبارسنجی |
+| `documentation/FEATURE_DICTIONARY.csv` | تعریف و منطق ۴۰ ویژگی عددی |
+| `documentation/ANALYSIS_PROTOCOL.md` | قرارداد نمونه‌گیری و روش‌شناسی خوشه‌بندی |
+| `config/` | تنظیمات بازنمایی، خوشه‌بندی و طرح آزمایش |
+| `tools/` | ابزارهای کنترل مستقل و تحلیل شکل‌ها |
+| `data/README_PHASE2.md` | منشأ داده‌ها و روش تهیهٔ ورودی برای بازاجرا |
+| `PROJECT_CARD.md` | سؤال پژوهش و جامعهٔ هدف |
+| `AI_USAGE.md` | مستند شفاف استفاده از هوش مصنوعی طبق آیین‌نامهٔ درس |
 
-### `feature_representation/`
+زیرپوشه‌های `_base` در دو بخش آماده‌سازی و بازنمایی، پیاده‌سازی‌های زیربنایی و قراردادهای سازگاری هستند؛ در سطح گزارش و فایل‌های تحویلی هیچ پوشه‌ای با عنوان‌های داخلی مراحل توسعه وجود ندارد.
 
-| File | Responsibility |
-| --- | --- |
-| `__main__.py` | Command-line interface for running and inspecting the representation pipeline. |
-| `pipeline.py` | Orchestrates reading, fitting, transforming, and artifact publication. |
-| `contracts.py` | Validates input schemas and exports aligned early-review text. |
-| `partner.py` | Loads feature definitions from the data-preparation modules. |
-| `classical.py` | Builds TF-IDF features and TruncatedSVD projections. |
-| `semantic.py` | Implements BGE/E5 sentence-embedding backends and review chunking. |
-| `aggregation.py` | Combines five review embeddings into product-level representations. |
-| `numeric.py` | Prepares numeric feature groups and PCA representations. |
-| `sampling.py` | Extracts bounded samples from prepared product-level outputs. |
-| `experiments.py` | Supplies language, dimensionality, and paired-comparison diagnostics. |
-| `artifacts.py` | Persists and validates transactional representation artifacts. |
-| `artifacts_v1.py` | Reads artifacts produced with the earlier storage format. |
-| `token_stats.py` | Computes bounded-memory token-length statistics. |
-| `plots.py` | Generates representation diagnostics and projections. |
-| `common.py` | Shared constants, file readers, hashes, and environment details. |
-| `__init__.py` | Package metadata. |
+## مقیاس اجرا و تفسیر خروجی
 
+پردازش و بازنمایی کلاسیک روی ۵۱۷٬۷۰۷ جفت دسته–محصول در شواهد بالادستی گزارش شده است. مقایسهٔ سه بازنمایی و خوشه‌بندی واقعی روی یک نمونهٔ ثابت ۵۱۲تایی از محصولات آموزشی انجام شده است، یعنی ۱۲۸ محصول از هر یک از چهار دسته. چون این نمونه متوازن است، نسبت خوشه‌ها را نباید به کل جامعه تعمیم داد. نتایج ثبت‌شده در `results/` و شکل‌های `figures/` همراه با PDF قابل بررسی‌اند.
 
+## اجرای کدها
 
+نصب وابستگی‌های اصلی با Python 3.12 و `requirements.txt` انجام می‌شود. برای اطلاع از دستورهای برنامه‌ها:
 
+```bash
+python data_preparation/prepare.py --help
+python -m feature_representation --help
+python -m clustering --help
+python -m analysis --help
+```
+
+برای آزمون سالم‌بودن مسیر خوشه‌بندی، بدون نیاز به دادهٔ خام:
+
+```bash
+python -m clustering fixture --output smoke/fixture
+python -m clustering run --input smoke/fixture/a_artifacts --config smoke/fixture/synthetic_policy.json --profiles smoke/fixture/early_profiles.jsonl --mode synthetic --output smoke/clustering
+python -m clustering verify --input smoke/clustering
+```
+
+این آزمون **مصنوعی** است و با اجرای واقعی مبنای گزارش اشتباه گرفته نمی‌شود. برای بازاجرای تحلیل واقعی، خروجی‌های پردازش‌شده، چهار دستهٔ اصلی داده و snapshot مدل‌های زبانی باید مطابق مستندات ورودی فراهم شوند؛ فایل‌های خام و وزن مدل‌ها عمداً در این مخزن قرار نگرفته‌اند.
+
+## تطبیق با سند درس
+
+در صفحهٔ ۱۰ سند رسمی، پنج قلم برای این فاز ذکر شده است: گزارش، کد یا pipeline آماده‌سازی، شکل‌های کاهش بُعد و خوشه‌بندی، فهرست ویژگی‌ها و منطق آن‌ها، و تگ Git با نام `phase-2`. چهار قلم فایل‌محور در این بسته حاضرند. **تگ Git داخل ZIP ایجاد نمی‌شود**؛ پس از بارگذاری همین نسخه در مخزن، باید تگ `phase-2` روی commit تحویلی ایجاد و انتشار آن بررسی شود. طبق صفحهٔ ۱۸، داده‌های بزرگ نباید در مخزن GitHub قرار گیرند و ارائه در CW نیز جداگانه لازم است.
