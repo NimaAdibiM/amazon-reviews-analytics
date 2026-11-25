@@ -1,0 +1,38 @@
+{
+  "original_mean_silhouette_row_mismatch_trials": 65,
+  "corrected_mean_row_max_abs_diff": 4.117646312806755e-08,
+  "primary_reference_metric": {
+    "space": "e5",
+    "algorithm": "kmeans",
+    "k": 3,
+    "n_seeds": 5,
+    "silhouette_median": 0.13147619366645813,
+    "seed_ari_median": 0.993832280108006,
+    "subsample_ari_seed42_median": 0.9779130669918111,
+    "min_cluster_over_seeds": 151,
+    "fit_seconds_total": 0.11904899900400778,
+    "category_nmi_seed42": 0.2117128709011593,
+    "early_rating_eta2_seed42": 0.1764259991831623,
+    "reference_trial": "trial_c761d54c5ffd2426",
+    "warning_cutoffs_met": true
+  },
+  "post_fix_trials": 67,
+  "independently_refitted_primary_trials": 45,
+  "min_primary_replay_ari": 1.0,
+  "post_fix_preflight_checks": 9,
+  "all_preflight_within_tolerance": true,
+  "raw_clustering_input": "five early reviews per category and parent",
+  "posthoc_join": "fixed E5/k3/seed42 assignments only",
+  "test_runs": {
+    "A_standard": "61 pass + 3 optional skipped; 2 of 3 separately passed with local weights, remaining legacy test rejects the active feature schema",
+    "B_corrected": "84 pass",
+    "final": "12 pass",
+    "upstream": "59 pass + 1 skip; separately 1 pass using workspace raw feature table",
+    "preparation": "4 pass",
+    "phase1_delivery": "4 pass",
+    "BDD": "12 scenarios / 36 steps pass"
+  },
+  "environment": "macOS arm64, Python 3.14.8, scikit-learn 1.9.1 for clustering; semantic encoders in original local model environment",
+  "readonly_check": "Verified without writing 623 tracked files",
+  "active_real_classical_refit": "512 {'train': 512}\n{'tfidf_unigram': 0.0, 'numeric_rating': 0.0, 'tfidf_svd_unigram': 0.0001637851819396019, 'numeric_pca': 0.0, 'fusion_rating_text': 0.00011581368744373322}"
+}

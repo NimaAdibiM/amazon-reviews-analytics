@@ -1,0 +1,115 @@
+{
+  "schema_version": "stage-b-policy-1",
+  "version": 1,
+  "status": "DRAFT_REQUIRES_APPROVAL",
+  "revision_kind": "INITIAL",
+  "proposal_only": true,
+  "plan": {
+    "resources": {
+      "max_rows": 4000,
+      "max_scan_rows": 100000,
+      "max_input_bytes": 268435456,
+      "max_sample_bytes": 134217728,
+      "max_pairwise_bytes": 134217728,
+      "max_memory_mb": 2048,
+      "max_wall_seconds": 600,
+      "max_trials": 128,
+      "max_total_fits": 1024,
+      "max_profile_bytes": 33554432,
+      "threads": 1
+    },
+    "sampling": {
+      "strategy": "balanced",
+      "max_rows": 800,
+      "categories": [
+        "Electronics",
+        "Beauty_and_Personal_Care",
+        "Appliances",
+        "All_Beauty"
+      ],
+      "seed": 42
+    },
+    "spaces": [
+      {
+        "id": "lexical",
+        "source": "tfidf_svd_bigram",
+        "metric": "euclidean",
+        "normalization": "l2"
+      },
+      {
+        "id": "numeric",
+        "source": "numeric_distance",
+        "metric": "euclidean",
+        "normalization": "none"
+      }
+    ],
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "evaluation": {
+      "max_rows": 160,
+      "seed": 9001
+    },
+    "stability": {
+      "subsample_repeats": 3,
+      "fraction": 0.8,
+      "min_overlap": 10,
+      "normalization_sensitivity": false
+    },
+    "common_eligible": true,
+    "figures": true,
+    "candidates": [
+      {
+        "algorithm": "kmeans",
+        "space": "lexical",
+        "k_values": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "n_init": 20,
+        "max_iter": 300
+      }
+    ]
+  },
+  "approved_by": null,
+  "approved_at": null,
+  "approval_reference": null,
+  "source_manifest_sha256": null,
+  "sample_key_hash": null,
+  "code_sha256": null,
+  "early_profiles_sha256": null,
+  "selection_policy": {
+    "status": "DRAFT_REQUIRES_APPROVAL",
+    "dimensions": [
+      "same-geometry inertia",
+      "fixed-sample silhouette",
+      "valid CH/DBI",
+      "cluster sizes",
+      "coverage",
+      "seed and parent subsample ARI",
+      "profiles",
+      "cost"
+    ],
+    "proposed_not_approved": {
+      "seed_ari_median_warning": 0.75,
+      "seed_ari_q1_warning": 0.6,
+      "min_cluster_warning": 10,
+      "minibatch_max_inertia_ratio": 1.05,
+      "minibatch_max_silhouette_drop": 0.02
+    },
+    "no_automatic_scientific_winner": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "protocol_version":"phase2-real-512-predeclared-2026-11-25",
+  "scope":"512 training products; 128 per each of four categories; descriptive and exploratory comparison only",
+  "primary_spaces":{"classical":"tfidf_svd_unigram","bge":"semantic_bge_M_l2","e5":"semantic_e5_M_l2"},
+  "identical_keys_required":true,
+  "invalid_inputs_rejected":"any missing/duplicate/mismatched keys, non-finite embeddings, invalid/no real provenance",
+  "algorithms":{"primary":"KMeans","secondary":["MiniBatchKMeans","Agglomerative average linkage cosine"],"diagnostic":"DBSCAN where feasible; never forced to have valid clusters"},
+  "primary_k_candidates":[3,5,8],
+  "seed_list":[42,52,62,72,82],
+  "kmeans":{"n_init":10,"max_iter":300,"tol":0.0001},
+  "primary_metric":"cosine silhouette, within representation only; caution cross-space comparison",
+  "secondary_metrics":["pairwise seed ARI","subsample ARI on shared products","cluster sizes","category mix post hoc","early ratings post hoc","time and RAM"],
+  "subsample_policy":{"fraction":0.80,"random_seeds":[142,242],"group":"global parent_asin","k_per_seed":1,"fit_seed":42},
+  "selection_rule":{"first":"reject incomplete and invalid or label-leaking experiments","second":"within each space prefer solutions with no clusters under 10 and seed ARI median>=0.75, subsample ARI median>=0.60","third":"among eligible k maximize cosine silhouette; ties absolute <=0.01 resolved by better min(seed/subsample ARI), then smaller k","fourth":"if no k meets warnings, choose least-invalid transparently and record limitations; don't invent pass","fifth":"choose representation on multi-criterion evidence including stability, interpretability, sample coverage, and efficiency; no mandatory winner where conflicting"},
+  "selection_cutoffs_are":"pre-execution decision heuristics, not formal requirements or universal statistical guarantees",
+  "data_use":"train-only; no future reviews 6-15, target, test, or metadata snapshot in fit/selection; category/rating only post hoc except separately labeled numeric ablations",
+  "sample_limitation":"balanced comparison sample, not representative of category proportions or full Amazon population; no CI or prevalence estimates generalized without design correction",
+  "full_stage_a":{"declared_n":517707,"actual_full_vectors_in_current_package":false,"verify_status":"document-and-hash-evidence-only"},
+  "report_rule":"do not equate clustering quality with downstream predictive accuracy; do not claim optimal globally; do not fabricate real runs"
+}

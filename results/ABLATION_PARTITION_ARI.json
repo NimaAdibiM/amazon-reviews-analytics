@@ -1,0 +1,77 @@
+[
+  {
+    "left": "numeric_l2",
+    "right": "numeric",
+    "ari": 0.5640804739188965
+  },
+  {
+    "left": "numeric_l2",
+    "right": "fusion",
+    "ari": 1.0
+  },
+  {
+    "left": "numeric_l2",
+    "right": "classical",
+    "ari": 0.008596377361003276
+  },
+  {
+    "left": "numeric_l2",
+    "right": "e5",
+    "ari": 0.056665628626643975
+  },
+  {
+    "left": "numeric_l2",
+    "right": "bge",
+    "ari": 0.01201710686081998
+  },
+  {
+    "left": "numeric",
+    "right": "fusion",
+    "ari": 0.5640804739188965
+  },
+  {
+    "left": "numeric",
+    "right": "classical",
+    "ari": -0.007171759560753362
+  },
+  {
+    "left": "numeric",
+    "right": "e5",
+    "ari": 0.06584278686810739
+  },
+  {
+    "left": "numeric",
+    "right": "bge",
+    "ari": -0.0026989521904367195
+  },
+  {
+    "left": "fusion",
+    "right": "classical",
+    "ari": 0.008596377361003276
+  },
+  {
+    "left": "fusion",
+    "right": "e5",
+    "ari": 0.056665628626643975
+  },
+  {
+    "left": "fusion",
+    "right": "bge",
+    "ari": 0.01201710686081998
+  },
+  {
+    "left": "classical",
+    "right": "e5",
+    "ari": 0.2917127712634911
+  },
+  {
+    "left": "classical",
+    "right": "bge",
+    "ari": 0.6353221749413094
+  },
+  {
+    "left": "e5",
+    "right": "bge",
+    "ari": 0.2879721597936747
+  }
+]

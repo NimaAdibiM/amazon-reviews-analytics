@@ -1,0 +1,7 @@
+{
+  "output_files_verified": 9,
+  "rows_verified": 517707,
+  "early_missingness_rows_verified": 124,
+  "numeric_values_finite_and_missingness_preserved": true,
+  "phase1_source_hash_and_retain_histogram_matched": true
+}

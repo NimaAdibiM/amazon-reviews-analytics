@@ -1,0 +1,61 @@
+{
+  "level": "REAL_TRAIN_SUBSET_EXPERIMENT",
+  "max_products": 512,
+  "batch_products": 24,
+  "fit_max_products": 512,
+  "fit_text_bytes": 134217728,
+  "max_document_bytes": 2097152,
+  "max_input_bytes": 4294967296,
+  "seed": 42,
+  "export_sparse": true,
+  "pca_k": 5,
+  "models": {
+    "bge": {
+      "model_dir": "representation_audit/models/bge",
+      "normalize": true,
+      "device": "cpu",
+      "batch_size": 12,
+      "chunking": true
+    },
+    "e5": {
+      "model_dir": "representation_audit/models/e5",
+      "normalize": true,
+      "device": "cpu",
+      "batch_size": 12,
+      "chunking": true
+    }
+  },
+  "classical": [
+    {
+      "name": "unigram",
+      "ngram_range": [
+        1,
+        1
+      ],
+      "min_df": 2,
+      "max_df": 1.0,
+      "max_features": 12000,
+      "sublinear_tf": true,
+      "k": 256,
+      "normalize": true,
+      "max_sparse_bytes": 314572800,
+      "max_fit_work_bytes": 629145600
+    }
+  ],
+  "fusion": [
+    {
+      "name": "rating_text",
+      "text_space": "tfidf_svd_unigram",
+      "numeric_space": "numeric_rating",
+      "text_weight": 0.5,
+      "numeric_weight": 0.5
+    }
+  ],
+  "documents": "representation_audit/samples/balanced/text_documents.csv.gz",
+  "numeric": "representation_audit/samples/balanced/features_scaled.csv.gz",
+  "feature_contract": "representation_audit/samples/balanced/feature_contract.json",
+  "scaler": "representation_audit/samples/balanced/scaler_train.json",
+  "cohorts": [
+    "representation_audit/samples/balanced/reviews_cohort.jsonl"
+  ]
+}

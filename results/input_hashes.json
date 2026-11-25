@@ -1,0 +1,18 @@
+{
+  "All_Beauty": {
+    "review_sha256": "36ca7c48440a8247b2dca0174d095238422b506a8a80c114dca722b7715f1c94",
+    "metadata_sha256": "1cfbdf6d2ccf9c3ac52a4508b15f31f8f340508a245b65c3e3b5f461e06e97ef"
+  },
+  "Appliances": {
+    "review_sha256": "d9dd03aa9be0c8e6fea66d8ce99a7e5b359e272d6323186c1aa80f6d36af1dab",
+    "metadata_sha256": "b25ae892af7bc452c4a54b7e4fee52f4c3e9adf058768ca3cb07ecb8d328b41e"
+  },
+  "Beauty_and_Personal_Care": {
+    "review_sha256": "24f139d51014f50c052b69bdf5ca95e2e2656e80aabda2da3fdad29bb1931a53",
+    "metadata_sha256": "c8a69eba6579f1a3a2b6d6d564846f3c59839d0c859ff180a63a97a245c3bec2"
+  },
+  "Electronics": {
+    "review_sha256": "bf11cf9c94c23ead7d3ffb174d18231fad8fcd76e72ad167f538a5599a38de8e",
+    "metadata_sha256": "5eb4dabd539586c49654297319ef178b62a2fe8e43108376feda125f04455d93"
+  }
+}

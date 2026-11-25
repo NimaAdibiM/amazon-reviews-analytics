@@ -1,0 +1,149 @@
+{
+  "schema_version": "stage-b-policy-1",
+  "version": 1,
+  "status": "DRAFT_REQUIRES_APPROVAL",
+  "revision_kind": "INITIAL",
+  "proposal_only": true,
+  "plan": {
+    "resources": {
+      "max_rows": 4000,
+      "max_scan_rows": 100000,
+      "max_input_bytes": 268435456,
+      "max_sample_bytes": 134217728,
+      "max_pairwise_bytes": 134217728,
+      "max_memory_mb": 2048,
+      "max_wall_seconds": 600,
+      "max_trials": 128,
+      "max_total_fits": 1024,
+      "max_profile_bytes": 33554432,
+      "threads": 1
+    },
+    "sampling": {
+      "strategy": "balanced",
+      "max_rows": 240,
+      "categories": [
+        "Electronics",
+        "Beauty_and_Personal_Care",
+        "Appliances",
+        "All_Beauty"
+      ],
+      "seed": 42
+    },
+    "spaces": [
+      {
+        "id": "text",
+        "source": "tfidf_svd_fixture",
+        "metric": "euclidean",
+        "normalization": "none"
+      },
+      {
+        "id": "numeric",
+        "source": "numeric_compact",
+        "metric": "euclidean",
+        "normalization": "none"
+      },
+      {
+        "id": "fusion",
+        "source": "fusion_fixture",
+        "metric": "euclidean",
+        "normalization": "none",
+        "fusion_weights": {
+          "text_space": "tfidf_svd_fixture",
+          "text_weight": 0.5,
+          "numeric_weight": 0.5
+        }
+      }
+    ],
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "evaluation": {
+      "max_rows": 160,
+      "seed": 9001
+    },
+    "stability": {
+      "subsample_repeats": 3,
+      "fraction": 0.8,
+      "min_overlap": 10,
+      "normalization_sensitivity": true
+    },
+    "common_eligible": true,
+    "figures": true,
+    "candidates": [
+      {
+        "algorithm": "kmeans",
+        "space": "text",
+        "k_values": [
+          2,
+          3
+        ],
+        "n_init": 10,
+        "max_iter": 100
+      },
+      {
+        "algorithm": "minibatch",
+        "space": "text",
+        "k_values": [
+          2,
+          3
+        ],
+        "n_init": 10,
+        "max_iter": 100,
+        "batch_size": 64,
+        "init_size": 120,
+        "reassignment_ratio": 0.01,
+        "max_no_improvement": 10
+      },
+      {
+        "algorithm": "agglomerative",
+        "space": "text",
+        "k": 3,
+        "linkage": "ward",
+        "all_seeds": false
+      },
+      {
+        "algorithm": "dbscan",
+        "space": "text",
+        "min_samples": 5,
+        "eps_quantile": 0.8,
+        "all_seeds": false
+      },
+      {
+        "algorithm": "dbscan",
+        "space": "text",
+        "min_samples": 5,
+        "eps_quantile": 0.95,
+        "all_seeds": false
+      },
+      {
+        "algorithm": "kmeans",
+        "space": "numeric",
+        "k": 3,
+        "n_init": 10,
+        "max_iter": 100,
+        "all_seeds": false
+      },
+      {
+        "algorithm": "kmeans",
+        "space": "fusion",
+        "k": 3,
+        "n_init": 10,
+        "max_iter": 100,
+        "all_seeds": false
+      },
+      {
+        "algorithm": "kmeans",
+        "space": "text",
+        "scope": "per_category",
+        "k": 3,
+        "n_init": 10,
+        "max_iter": 100,
+        "all_seeds": false
+      }
+    ]
+  }
+}

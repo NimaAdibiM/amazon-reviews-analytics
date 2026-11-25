@@ -1,0 +1,16 @@
+{
+  "bge": {
+    "products": 512,
+    "reviews": 2560,
+    "review_max_abs_delta": 0.0,
+    "product_max_abs_delta": 1.1920928955078125e-07,
+    "model": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a"
+  },
+  "e5": {
+    "products": 512,
+    "reviews": 2560,
+    "review_max_abs_delta": 0.0,
+    "product_max_abs_delta": 2.9802322387695312e-08,
+    "model": "614241f622f53c4eeff9890bdc4f31cfecc418b3"
+  }
+}

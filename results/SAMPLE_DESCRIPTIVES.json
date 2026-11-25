@@ -1,0 +1,38 @@
+[
+  {
+    "category": "All_Beauty",
+    "n": 128,
+    "rating_mean": 4.2546875,
+    "early_low_share": 0.140625,
+    "text_chars_median": 922.5,
+    "window_days_median": 78.98760780092593,
+    "empty_reviews": 0
+  },
+  {
+    "category": "Appliances",
+    "n": 128,
+    "rating_mean": 4.325,
+    "early_low_share": 0.1203125,
+    "text_chars_median": 788.5,
+    "window_days_median": 158.87016997106483,
+    "empty_reviews": 0
+  },
+  {
+    "category": "Beauty_and_Personal_Care",
+    "n": 128,
+    "rating_mean": 4.140625,
+    "early_low_share": 0.1453125,
+    "text_chars_median": 1135.5,
+    "window_days_median": 131.42525462962965,
+    "empty_reviews": 0
+  },
+  {
+    "category": "Electronics",
+    "n": 128,
+    "rating_mean": 4.1421875,
+    "early_low_share": 0.15625,
+    "text_chars_median": 1292.5,
+    "window_days_median": 77.00467143518519,
+    "empty_reviews": 0
+  }
+]

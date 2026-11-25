@@ -1,0 +1,16 @@
+{
+  "bge": {
+    "model_id": "BAAI/bge-small-en-v1.5",
+    "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+    "model_files_hash": "12e310790a9e1e19e8087c62477dbb6052a269e61389a57067359489d0f385e8",
+    "dimension": 384,
+    "license": "mit"
+  },
+  "e5": {
+    "model_id": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "model_files_hash": "ed4729c272235ccebd8d7c887b2a97d203cf2835dae956e59fe203c58faf9950",
+    "dimension": 384,
+    "license": "mit"
+  }
+}

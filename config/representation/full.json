@@ -1,0 +1,49 @@
+{
+  "level": "FULL_DATA_EXECUTION",
+  "max_products": 517707,
+  "batch_products": 512,
+  "fit_max_products": 8192,
+  "fit_text_bytes": 134217728,
+  "max_document_bytes": 2097152,
+  "max_input_bytes": 4294967296,
+  "seed": 42,
+  "export_sparse": true,
+  "pca_k": 5,
+  "models": {},
+  "classical": [
+    {
+      "name": "unigram",
+      "ngram_range": [
+        1,
+        1
+      ],
+      "min_df": 2,
+      "max_df": 1.0,
+      "max_features": 12000,
+      "sublinear_tf": true,
+      "k": 256,
+      "normalize": true,
+      "max_sparse_bytes": 314572800,
+      "max_fit_work_bytes": 629145600
+    }
+  ],
+  "fusion": [
+    {
+      "name": "rating_text",
+      "text_space": "tfidf_svd_unigram",
+      "numeric_space": "numeric_rating",
+      "text_weight": 0.5,
+      "numeric_weight": 0.5
+    }
+  ],
+  "documents": "output/text_documents.csv.gz",
+  "numeric": "output/features_scaled.csv.gz",
+  "feature_contract": "output/feature_contract.json",
+  "scaler": "output/scaler_train.json",
+  "cohorts": [
+    "output/review_stage/All_Beauty/reviews_cohort.jsonl",
+    "output/review_stage/Appliances/reviews_cohort.jsonl",
+    "output/review_stage/Beauty_and_Personal_Care/reviews_cohort.jsonl",
+    "output/review_stage/Electronics/reviews_cohort.jsonl"
+  ]
+}

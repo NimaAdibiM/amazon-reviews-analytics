@@ -1,0 +1,195 @@
+{
+  "resources": {
+    "max_rows": 512,
+    "max_scan_rows": 512,
+    "max_input_bytes": 268435456,
+    "max_sample_bytes": 134217728,
+    "max_pairwise_bytes": 134217728,
+    "max_memory_mb": 2048,
+    "max_wall_seconds": 1800,
+    "max_trials": 128,
+    "max_total_fits": 1024,
+    "max_profile_bytes": 33554432,
+    "threads": 1
+  },
+  "sampling": {
+    "strategy": "balanced",
+    "max_rows": 512,
+    "categories": [
+      "Electronics",
+      "Beauty_and_Personal_Care",
+      "Appliances",
+      "All_Beauty"
+    ],
+    "seed": 42
+  },
+  "spaces": [
+    {
+      "id": "classical",
+      "source": "tfidf_svd_unigram",
+      "normalization": "l2",
+      "metric": "euclidean"
+    },
+    {
+      "id": "bge",
+      "source": "semantic_bge_M_l2",
+      "normalization": "l2",
+      "metric": "euclidean"
+    },
+    {
+      "id": "e5",
+      "source": "semantic_e5_M_l2",
+      "normalization": "l2",
+      "metric": "euclidean"
+    },
+    {
+      "id": "numeric",
+      "source": "numeric_rating",
+      "normalization": "none",
+      "metric": "euclidean"
+    },
+    {
+      "id": "numeric_l2",
+      "source": "numeric_rating",
+      "normalization": "l2",
+      "metric": "euclidean"
+    },
+    {
+      "id": "fusion",
+      "source": "fusion_rating_text",
+      "normalization": "l2",
+      "metric": "euclidean",
+      "fusion_weights": {
+        "text_space": "tfidf_svd_unigram",
+        "text_weight": 0.5,
+        "numeric_weight": 0.5
+      }
+    },
+    {
+      "id": "e5_cosine",
+      "source": "semantic_e5_M_l2",
+      "normalization": "l2",
+      "metric": "cosine"
+    }
+  ],
+  "seeds": [
+    42,
+    52,
+    62,
+    72,
+    82
+  ],
+  "evaluation": {
+    "max_rows": 512,
+    "seed": 9001,
+    "silhouette_metric": "cosine"
+  },
+  "stability": {
+    "subsample_repeats": 2,
+    "fraction": 0.8,
+    "min_overlap": 20,
+    "normalization_sensitivity": false,
+    "random_seeds": [
+      142,
+      242
+    ],
+    "fit_seed": 42,
+    "sampler": "numpy_parent_without_replacement_ceil"
+  },
+  "common_eligible": true,
+  "figures": false,
+  "candidates": [
+    {
+      "algorithm": "kmeans",
+      "n_init": 10,
+      "max_iter": 300,
+      "tol": 0.0001,
+      "space": "classical",
+      "k_values": [
+        3,
+        5,
+        8
+      ]
+    },
+    {
+      "algorithm": "kmeans",
+      "n_init": 10,
+      "max_iter": 300,
+      "tol": 0.0001,
+      "space": "bge",
+      "k_values": [
+        3,
+        5,
+        8
+      ]
+    },
+    {
+      "algorithm": "kmeans",
+      "n_init": 10,
+      "max_iter": 300,
+      "tol": 0.0001,
+      "space": "e5",
+      "k_values": [
+        3,
+        5,
+        8
+      ]
+    },
+    {
+      "algorithm": "kmeans",
+      "n_init": 10,
+      "max_iter": 300,
+      "tol": 0.0001,
+      "space": "numeric",
+      "k_values": [
+        3
+      ]
+    },
+    {
+      "algorithm": "kmeans",
+      "n_init": 10,
+      "max_iter": 300,
+      "tol": 0.0001,
+      "space": "numeric_l2",
+      "k_values": [
+        3
+      ]
+    },
+    {
+      "algorithm": "kmeans",
+      "n_init": 10,
+      "max_iter": 300,
+      "tol": 0.0001,
+      "space": "fusion",
+      "k_values": [
+        3
+      ]
+    },
+    {
+      "algorithm": "agglomerative",
+      "space": "e5_cosine",
+      "linkage": "average",
+      "k": 3,
+      "all_seeds": false
+    },
+    {
+      "algorithm": "minibatch",
+      "space": "e5",
+      "k": 3,
+      "n_init": 10,
+      "max_iter": 300,
+      "tol": 0.0001,
+      "batch_size": 128,
+      "init_size": 384,
+      "reassignment_ratio": 0.01,
+      "max_no_improvement": 20
+    },
+    {
+      "algorithm": "dbscan",
+      "space": "e5_cosine",
+      "min_samples": 10,
+      "eps_quantile": 0.9,
+      "all_seeds": false
+    }
+  ]
+}
