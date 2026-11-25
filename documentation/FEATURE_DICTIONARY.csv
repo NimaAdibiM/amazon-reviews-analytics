@@ -1,0 +1,41 @@
+feature,block,unit_before_scaling,available_at,transform,scaling,reason
+rating_mean,rating,rating or rating/position,fifth valid observed review,identity,upstream train z-score,early satisfaction level and distribution
+rating_sd,rating,rating or rating/position,fifth valid observed review,identity,upstream train z-score,early satisfaction level and distribution
+rating_min,rating,rating or rating/position,fifth valid observed review,identity,upstream train z-score,early satisfaction level and distribution
+rating_max,rating,rating or rating/position,fifth valid observed review,identity,upstream train z-score,early satisfaction level and distribution
+rating_1_count,rating,count,fifth valid observed review,identity,upstream train z-score,early satisfaction level and distribution
+rating_2_count,rating,count,fifth valid observed review,identity,upstream train z-score,early satisfaction level and distribution
+rating_3_count,rating,count,fifth valid observed review,identity,upstream train z-score,early satisfaction level and distribution
+rating_4_count,rating,count,fifth valid observed review,identity,upstream train z-score,early satisfaction level and distribution
+rating_5_count,rating,count,fifth valid observed review,identity,upstream train z-score,early satisfaction level and distribution
+early_low_star_share,rating,share,fifth valid observed review,identity,upstream train z-score,early satisfaction level and distribution
+chronological_rating_1,timing,rating or rating/position,fifth valid observed review,identity,upstream train z-score,temporal change and observation cadence
+chronological_rating_2,timing,rating or rating/position,fifth valid observed review,identity,upstream train z-score,temporal change and observation cadence
+chronological_rating_3,timing,rating or rating/position,fifth valid observed review,identity,upstream train z-score,temporal change and observation cadence
+chronological_rating_4,timing,rating or rating/position,fifth valid observed review,identity,upstream train z-score,temporal change and observation cadence
+chronological_rating_5,timing,rating or rating/position,fifth valid observed review,identity,upstream train z-score,temporal change and observation cadence
+rating_first_to_last_change,timing,rating or rating/position,fifth valid observed review,identity,upstream train z-score,temporal change and observation cadence
+rating_position_slope,timing,rating or rating/position,fifth valid observed review,identity,upstream train z-score,temporal change and observation cadence
+rating_position_fit_rmse,timing,rating or rating/position,fifth valid observed review,identity,upstream train z-score,temporal change and observation cadence
+review_gap_1_days,timing,days,fifth valid observed review,log1p,upstream train z-score,temporal change and observation cadence
+review_gap_2_days,timing,days,fifth valid observed review,log1p,upstream train z-score,temporal change and observation cadence
+review_gap_3_days,timing,days,fifth valid observed review,log1p,upstream train z-score,temporal change and observation cadence
+review_gap_4_days,timing,days,fifth valid observed review,log1p,upstream train z-score,temporal change and observation cadence
+early_window_days,timing,days,fifth valid observed review,log1p,upstream train z-score,temporal change and observation cadence
+rating_day_slope,timing,rating/day,fifth valid observed review,signed_log1p,upstream train z-score,temporal change and observation cadence
+rating_day_fit_rmse,timing,rating or rating/position,fifth valid observed review,identity,upstream train z-score,temporal change and observation cadence
+no_time_variation,timing,binary,fifth valid observed review,identity,binary passthrough,temporal change and observation cadence
+verified_purchase_count,purchase,count,fifth valid observed review,identity,upstream train z-score,verified purchase coverage; omitted from main clustering
+unverified_purchase_count,purchase,count,fifth valid observed review,identity,upstream train z-score,verified purchase coverage; omitted from main clustering
+missing_purchase_count,purchase,count,fifth valid observed review,identity,upstream train z-score,verified purchase coverage; omitted from main clustering
+verified_purchase_share,purchase,share,fifth valid observed review,identity,upstream train z-score,verified purchase coverage; omitted from main clustering
+title_missing_count,text,count,fifth valid observed review,identity,upstream train z-score,text availability and amount; not future content
+body_missing_count,text,count,fifth valid observed review,identity,upstream train z-score,text availability and amount; not future content
+both_text_missing_count,text,count,fifth valid observed review,identity,upstream train z-score,text availability and amount; not future content
+all_early_text_missing,text,binary,fifth valid observed review,identity,binary passthrough,text availability and amount; not future content
+title_chars_mean,text,characters,fifth valid observed review,identity,upstream train z-score,text availability and amount; not future content
+title_chars_max,text,characters,fifth valid observed review,identity,upstream train z-score,text availability and amount; not future content
+title_words_mean,text,words,fifth valid observed review,identity,upstream train z-score,text availability and amount; not future content
+body_chars_mean,text,characters,fifth valid observed review,identity,upstream train z-score,text availability and amount; not future content
+body_chars_max,text,characters,fifth valid observed review,identity,upstream train z-score,text availability and amount; not future content
+body_words_mean,text,words,fifth valid observed review,identity,upstream train z-score,text availability and amount; not future content
