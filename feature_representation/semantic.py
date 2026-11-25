@@ -1,4 +1,5 @@
 import re
+from tempfile import TemporaryDirectory
 from pathlib import Path
 
 import numpy as np
@@ -28,12 +29,26 @@ def prepare_model(name, destination, max_bytes=1500000000):
     size = sum(x.size for x in files)
     if size > max_bytes:
         raise ValueError('MODEL_DOWNLOAD_BUDGET_EXCEEDED')
-    snapshot_download(MODELS[name], revision=info.sha, local_dir=str(destination), allow_patterns=[x.rfilename for x in files], token=False)
-    hashes = {x.rfilename:digest(destination/x.rfilename) for x in files}
-    receipt = {'model_id':MODELS[name], 'revision':info.sha, 'source':'https://huggingface.co/'+MODELS[name],
-               'license':getattr(info.card_data, 'license', None), 'expected_download_bytes':size,
-               'actual_file_bytes':sum((destination/n).stat().st_size for n in hashes), 'files':hashes,'created_at':now()}
-    atomic_json(destination/'STAGE_A_MODEL_SOURCE.json', receipt)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    with TemporaryDirectory(dir=destination.parent, prefix='.model-') as temporary:
+        stage = Path(temporary) / 'snapshot'
+        snapshot_download(MODELS[name], revision=info.sha, local_dir=str(stage),
+                          allow_patterns=[x.rfilename for x in files], token=False)
+        hashes = {}
+        for entry in files:
+            path = stage / entry.rfilename
+            sha = digest(path)
+            official = getattr(getattr(entry, 'lfs', None), 'sha256', None)
+            if path.stat().st_size != entry.size or (official and sha != official):
+                raise ValueError('INCOMPLETE_MODEL_DOWNLOAD')
+            hashes[entry.rfilename] = sha
+        receipt = {'model_id':MODELS[name], 'revision':info.sha, 'source':'https://huggingface.co/'+MODELS[name],
+                   'license':getattr(info.card_data, 'license', None), 'expected_download_bytes':size,
+                   'actual_file_bytes':size, 'files':hashes, 'created_at':now()}
+        atomic_json(stage / 'STAGE_A_MODEL_SOURCE.json', receipt)
+        if destination.exists():
+            raise ValueError('MODEL_DESTINATION_EXISTS')
+        stage.rename(destination)
     return receipt
 
 
@@ -47,7 +62,10 @@ def model_identity(name, config):
     receipt = read_json(receipt_path)
     if receipt['model_id'] != MODELS[name] or not re.fullmatch(r'[0-9a-f]{40}',receipt['revision']):
         raise ValueError('MODEL_SOURCE_IDENTITY_MISMATCH')
-    for relative, sha in receipt['files'].items():
+    files = receipt['files']
+    if 'config.json' not in files or not any(x.endswith('.safetensors') for x in files):
+        raise ValueError('INCOMPLETE_MODEL_RECEIPT')
+    for relative, sha in files.items():
         p = (source/relative).resolve()
         if not p.is_relative_to(source.resolve()) or not p.is_file() or digest(p) != sha:
             raise ValueError('MODEL_FILE_HASH_MISMATCH')
@@ -86,6 +104,18 @@ class SentenceBackend:
         return self.model.encode(texts, batch_size=self.batch_size, show_progress_bar=False,
                                  convert_to_numpy=True, normalize_embeddings=self.normalize, prompt='').astype(np.float32)
 
+    def encode_token_ids(self, content):
+        """Encode exact tokenizer IDs; a piece starting mid-word stays intact."""
+        import torch
+        features = [{'input_ids':self.tokenizer.build_inputs_with_special_tokens(ids)} for ids in content]
+        batch = self.tokenizer.pad(features, padding=True, return_tensors='pt').to(self.model.device)
+        self.model.eval()
+        with torch.inference_mode():
+            vectors = self.model(dict(batch))['sentence_embedding']
+            if self.normalize:
+                vectors = torch.nn.functional.normalize(vectors, dim=1)
+        return vectors.cpu().float().numpy()
+
     def peak_cuda_bytes(self):
         if not self.identity['device_actual'].startswith('cuda'):
             return None
@@ -93,64 +123,92 @@ class SentenceBackend:
         return int(torch.cuda.max_memory_allocated())
 
 
-def tokenize_chunks(text, backend):
+def _id_pieces(text, backend, chunking, cap):
     tokenizer = backend.tokenizer
-    ids = tokenizer.encode(text, add_special_tokens=False, truncation=False)
-    overhead = len(tokenizer.encode(backend.prefix, add_special_tokens=True, truncation=False))
-    width = backend.max_length - overhead - 2
-    if width < 1:
-        raise ValueError('TOKEN_BUDGET_TOO_SMALL')
-    pending = [ids[i:i+width] for i in range(0,len(ids),width)]
+    ids = tokenizer.encode(backend.prefix + text, add_special_tokens=False, truncation=False)
+    prefix = tokenizer.encode(backend.prefix.rstrip(), add_special_tokens=False, truncation=False) if backend.prefix else []
+    special = len(tokenizer.encode('', add_special_tokens=True, truncation=False))
+    width = backend.max_length - special - len(prefix)
+    if width < 1 or ids[:len(prefix)] != prefix:
+        raise ValueError('TOKEN_BUDGET_OR_PREFIX_MISMATCH')
+    content = ids[len(prefix):]
+    length = len(ids) + special
+    count = max(1, (len(content)+width-1)//width) if chunking else 1
+    if count > cap:
+        raise ValueError('REVIEW_CHUNK_BUDGET_EXCEEDED')
     pieces = []
-    while pending:
-        part = pending.pop(0)
-        decoded = tokenizer.decode(part, skip_special_tokens=True, clean_up_tokenization_spaces=False)
-        candidate = backend.prefix+decoded
-        if len(tokenizer.encode(candidate, add_special_tokens=True, truncation=False)) <= backend.max_length:
-            pieces.append((candidate,len(part)))
-        elif len(part)>1:
-            half=len(part)//2
-            pending[0:0]=[part[:half],part[half:]]
-        else:
-            raise ValueError('TOKENIZER_CHUNK_CANNOT_FIT')
-    return pieces
+    for i in range(count):
+        piece = content[i*width:(i+1)*width]
+        pieces.append((prefix + piece, max(1,len(piece))))
+    return length, pieces
+
+
+def _lossless_text(ids, backend):
+    tokenizer = backend.tokenizer
+    text = tokenizer.decode(ids, skip_special_tokens=False, clean_up_tokenization_spaces=False)
+    if tokenizer.encode(text, add_special_tokens=False, truncation=False) != ids:
+        raise ValueError('BACKEND_MUST_SUPPORT_EXACT_TOKEN_IDS')
+    return text
+
+
+def tokenize_chunks(text, backend):
+    """Text-only adapter. Never silently modify tokens at a chunk boundary."""
+    _, pieces = _id_pieces(text, backend, True, 2**31)
+    return [(_lossless_text(ids, backend), weight) for ids, weight in pieces]
 
 
 def encode_products(records, backend, chunking=False, max_chunks_per_review=1024):
-    n,d = len(records),backend.dimension
+    n, d = len(records), backend.dimension
+    if type(max_chunks_per_review) is not int or max_chunks_per_review < 1 or backend.batch_size < 1:
+        raise ValueError('INVALID_EMBEDDING_BUDGET')
     vectors = np.zeros((n,5,d),dtype=np.float32)
-    mask = np.asarray([r['mask'] for r in records],dtype=bool)
+    mask = np.empty((n,5),dtype=bool)
     lengths = np.zeros((n,5),dtype=np.int64)
-    dropped = np.zeros((n,5),dtype=np.int64)
-    baseline_dropped = np.zeros((n,5),dtype=np.int64)
+    dropped = np.zeros_like(lengths)
+    baseline_dropped = np.zeros_like(lengths)
     chunk_counts = np.zeros((n,5),dtype=np.int32)
-    pending, owners, weights = [],[],[]
-    for i,row in enumerate(records):
-        for j,text in enumerate(row['texts']):
-            if not mask[i,j]:
-                continue
-            value=backend.prefix+text
-            length=len(backend.tokenizer.encode(value,add_special_tokens=True,truncation=False))
-            lengths[i,j]=length
-            baseline_dropped[i,j]=max(0,length-backend.max_length)
-            if chunking and length>backend.max_length:
-                parts=tokenize_chunks(text,backend)
-            else:
-                parts=[(value,1)]
-                dropped[i,j]=baseline_dropped[i,j]
-            if len(parts)>max_chunks_per_review:
-                raise ValueError('REVIEW_CHUNK_BUDGET_EXCEEDED')
-            chunk_counts[i,j]=len(parts)
-            total=sum(weight for _,weight in parts)
-            for part,weight in parts:
-                pending.append(part); owners.append((i,j)); weights.append(weight/total)
-    for start in range(0,len(pending),backend.batch_size):
-        end=start+backend.batch_size
-        batch=backend.encode(pending[start:end])
-        if batch.shape != (len(pending[start:end]),d) or not np.isfinite(batch).all():
+    exact = hasattr(backend,'encode_token_ids')
+    pending, owners = [], []
+
+    def flush():
+        batch = backend.encode_token_ids(pending) if exact else backend.encode(pending)
+        if batch.shape != (len(pending),d) or not np.isfinite(batch).all():
             raise ValueError('BACKEND_EMBEDDING_INVALID')
-        for v,(i,j),weight in zip(batch,owners[start:end],weights[start:end]):
-            vectors[i,j]+=v*weight
+        for vector,(i,j,weight) in zip(batch,owners):
+            vectors[i,j] += vector*weight
+        pending.clear()
+        owners.clear()
+
+    for i,row in enumerate(records):
+        texts = row['texts']
+        observed = np.asarray(row['mask'])
+        if (len(texts)!=5 or observed.shape!=(5,) or observed.dtype!=bool
+                or any(not isinstance(t,str) for t in texts)
+                or not np.array_equal(observed,[bool(t.strip()) for t in texts])):
+            raise ValueError('INVALID_FIVE_TEXTS_OR_MASK')
+        mask[i] = observed
+        for j,text in enumerate(texts):
+            if not observed[j]:
+                continue
+            length, pieces = _id_pieces(text, backend, chunking, max_chunks_per_review)
+            lengths[i,j] = length
+            baseline_dropped[i,j] = max(0,length-backend.max_length)
+            dropped[i,j] = 0 if chunking else baseline_dropped[i,j]
+            chunk_counts[i,j] = len(pieces)
+            total = sum(weight for _,weight in pieces)
+            for ids, weight in pieces:
+                if exact:
+                    value = ids
+                elif len(pieces)==1:
+                    value = backend.prefix+text
+                else:
+                    value = _lossless_text(ids,backend)
+                pending.append(value)
+                owners.append((i,j,weight/total))
+                if len(pending) == backend.batch_size:
+                    flush()
+    if pending:
+        flush()
     if backend.normalize and mask.any():
         vectors[mask]=normalize(vectors[mask]).astype(np.float32)
     return {'vectors':vectors, 'mask':mask, 'token_lengths':lengths,'tokens_dropped':dropped,

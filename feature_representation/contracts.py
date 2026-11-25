@@ -1,11 +1,11 @@
 import json
 import math
 import sqlite3
-from datetime import datetime, timezone
+from tempfile import NamedTemporaryFile
 from pathlib import Path
 
 from .common import CATEGORIES, KEYS, atomic_json, csv_rows, object_hash, read_json, text_reader
-from .partner import features, split_scale
+from .partner import features, views, split_scale
 
 
 def validate_key(row):
@@ -27,12 +27,8 @@ def review_record(row):
             raise ValueError(f'FIVE_POSITIONS_REQUIRED: {name}')
     stamps, ratings = row['early_timestamps'], row['early_ratings']
     for stamp in stamps:
-        if type(stamp) is not int:
+        if type(stamp) is not int or not -62_135_596_800_000 <= stamp <= 253_402_300_799_999:
             raise ValueError('INVALID_TIMESTAMP')
-        try:
-            datetime.fromtimestamp(stamp / 1000, timezone.utc)
-        except (ValueError, OSError, OverflowError) as exc:
-            raise ValueError('INVALID_TIMESTAMP') from exc
     if stamps != sorted(stamps):
         raise ValueError('COHORT_NOT_CHRONOLOGICAL')
     if any(type(x) is not int or x not in range(1, 6) for x in ratings):
@@ -53,12 +49,19 @@ def review_record(row):
             'text_document': '\n\n'.join(x for x in texts if x)}
 
 
+def unique_fields(pairs):
+    row = dict(pairs)
+    if len(row)!=len(pairs):
+        raise ValueError('DUPLICATE_COHORT_FIELD')
+    return row
+
+
 def cohort_rows(path):
     with text_reader(path) as handle:
         for number, line in enumerate(handle, 1):
             if not line.strip():
                 raise ValueError(f'BLANK_COHORT_RECORD: {number}')
-            row = json.loads(line, parse_constant=lambda x: (_ for _ in ()).throw(ValueError(x)))
+            row = json.loads(line, object_pairs_hook=unique_fields, parse_constant=lambda x: (_ for _ in ()).throw(ValueError(x)))
             if not isinstance(row, dict):
                 raise ValueError('COHORT_OBJECT_REQUIRED')
             yield number, review_record(row)
@@ -76,13 +79,42 @@ def validate_numeric_contract(contract, scaler):
     if scaler.get('split_hash_spec') != split_scale.SPLIT_HASH_SPEC:
         raise ValueError('SCALER_SPLIT_RULE_MISMATCH')
     for name, params in scaler['features'].items():
-        if params.get('scale') is not None and (not math.isfinite(params['scale']) or params['scale'] <= 0 or not math.isfinite(params['mean'])):
+        scale, mean = params['scale'], params['mean']
+        if scale is None and mean is None and params.get('observed_training_rows', 0) == 0:
+            continue
+        if (type(scale) not in (float, int) or type(mean) not in (float, int)
+                or not math.isfinite(scale) or scale <= 0 or not math.isfinite(mean)):
             raise ValueError(f'INVALID_SCALER_PARAMETERS: {name}')
+
+
+def check_scaled_source(config, hashes=None):
+    """Use the preparation manifest when available; raw and scaled headers coincide."""
+    numeric = Path(config['numeric'])
+    if numeric.name in ('features.csv.gz','features.csv'):
+        raise ValueError('EXPECTED_SCALED_NUMERIC_INPUT')
+    root = numeric.parent
+    prepared = root/'manifest.json'
+    sampled = root/'sampling_manifest.json'
+    expected = {}
+    if sampled.is_file():
+        expected = read_json(sampled).get('export_sha256', {})
+    elif prepared.is_file():
+        data = read_json(prepared)
+        if 'features_scaled.csv.gz' in data:
+            expected = {k:v['sha256'] for k,v in data.items()}
+    if expected:
+        from .common import digest
+        for field, name in (('numeric','features_scaled.csv.gz'),('feature_contract','feature_contract.json'),
+                            ('scaler','scaler_train.json'),('documents','text_documents.csv.gz')):
+            path = Path(config[field])
+            actual = hashes[str(path.resolve())]['sha256'] if hashes is not None else digest(path)
+            if actual != expected.get(name):
+                raise ValueError(f'PREPARED_INPUT_HASH_MISMATCH: {name}')
 
 
 def numeric_values(row):
     result = []
-    for name in features.FEATURE_VIEWS['full']:
+    for name in views['full']:
         value = row[name]
         if not value.strip():
             result.append(None)
@@ -91,7 +123,11 @@ def numeric_values(row):
             value = float(value)
         except ValueError as exc:
             raise ValueError(f'INVALID_NUMERIC: {name}') from exc
-        result.append(value if math.isfinite(value) else None)
+        if not math.isfinite(value):
+            raise ValueError(f'NONFINITE_NUMERIC: {name}')
+        if name not in features.SCALABLE_FIELDS and value not in (0, 1):
+            raise ValueError(f'INVALID_BINARY: {name}')
+        result.append(value)
     return result
 
 
@@ -121,7 +157,7 @@ def build_index(config, path):
             raise ValueError('EMPTY_INPUT')
         if config.get('numeric'):
             validate_numeric_contract(read_json(config['feature_contract']), read_json(config['scaler']))
-            for number, row in csv_rows(config['numeric'], KEYS + features.FEATURE_VIEWS['full']):
+            for number, row in csv_rows(config['numeric'], KEYS + views['full']):
                 category, parent, split = validate_key(row)
                 n = db.execute('UPDATE products SET numeric=? WHERE category=? AND parent=? AND split=? AND numeric IS NULL', (json.dumps(numeric_values(row)),category,parent,split)).rowcount
                 if n != 1:
@@ -151,7 +187,8 @@ def build_index(config, path):
 
 
 def index_rows(path):
-    with sqlite3.connect(path) as db:
+    from contextlib import closing
+    with closing(sqlite3.connect(path)) as db:
         for cat, parent, split, doc, numeric, review, source in db.execute('SELECT * FROM products ORDER BY category,parent'):
             yield {'category':cat, 'parent_asin':parent, 'split':split, 'text_document':doc,
                    'numeric':json.loads(numeric) if numeric else None,
@@ -160,21 +197,26 @@ def index_rows(path):
 
 def export_reviews(sources, output, max_products=4000):
     output = Path(output)
-    temporary = output.with_name(output.name + '.partial')
     seen = set()
     output.parent.mkdir(parents=True, exist_ok=True)
     if output.exists():
         raise ValueError('OUTPUT_EXISTS')
-    with temporary.open('w', encoding='utf-8') as handle:
-        for source in sources:
-            for number, row in cohort_rows(source):
-                key = row['category'], row['parent_asin']
-                if key in seen:
-                    raise ValueError('DUPLICATE_KEY')
-                seen.add(key)
-                if len(seen) > max_products:
-                    raise ValueError('PRODUCT_BUDGET_EXCEEDED')
-                row['source_file'], row['source_record'] = Path(source).name, number
-                handle.write(json.dumps(row, ensure_ascii=True) + '\n')
-    temporary.replace(output)
+    with NamedTemporaryFile('w', dir=output.parent, delete=False, encoding='utf-8') as handle:
+        temporary = Path(handle.name)
+    try:
+        with temporary.open('w', encoding='utf-8') as handle:
+            for source in sources:
+                for number, row in cohort_rows(source):
+                    key = row['category'], row['parent_asin']
+                    if key in seen:
+                        raise ValueError('DUPLICATE_KEY')
+                    seen.add(key)
+                    if len(seen) > max_products:
+                        raise ValueError('PRODUCT_BUDGET_EXCEEDED')
+                    row['source_file'], row['source_record'] = Path(source).name, number
+                    handle.write(json.dumps(row, ensure_ascii=True) + '\n')
+                                                                                
+        output.hardlink_to(temporary)
+    finally:
+        temporary.unlink(missing_ok=True)
     return len(seen)

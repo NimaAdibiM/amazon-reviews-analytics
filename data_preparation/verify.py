@@ -1,4 +1,4 @@
-                                                                                 
+"""Verify output hashes, joined tables, and optional phase-one reconciliation."""
 import argparse
 from collections import Counter
 from contextlib import ExitStack

@@ -1,4 +1,4 @@
-                                                                                   
+"""Build phase-two product features, isolated labels, and data-quality evidence."""
 
 import argparse
 from collections import Counter
@@ -20,7 +20,7 @@ from metadata import CATEGORIES, read_for_products, scan_metadata
 from split_scale import SPLIT_FRACTIONS, SPLIT_HASH_SPEC, SPLIT_SEED, apply_scaler, assign_split, fit_scaler
 
 ROOT = Path(__file__).resolve().parent
-DEFAULT_DATA = Path("/Users/parsaanvari/Projects/data_mining_project/Datasets")
+DEFAULT_DATA = ROOT.parent / "data" / "raw"
 KEYS = ("category", "parent_asin", "split")
 NUMERIC = tuple(name for group in FEATURE_GROUPS.values() for name in group)
 EARLY_RAW_FIELDS = ("titles", "bodies", "verified")

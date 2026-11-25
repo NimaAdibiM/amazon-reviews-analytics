@@ -43,6 +43,11 @@ def training_sample(rows, limit, byte_limit, seed, balanced=False):
                       'seed':seed, 'fit_keys':[[r['category'],r['parent_asin']] for r in selected]}
 
 
+def diagnostic_rows(rows, limit, seed):
+    """Bottom-hash diagnostics avoid the category-sorted prefix of fit rows."""
+    return heapq.nsmallest(limit, rows, key=lambda r: object_hash([seed,r['category'],r['parent_asin']]))
+
+
 def fit_classical(rows, config, seed):
     if any(r['split'] != 'train' for r in rows):
         raise ValueError('FIT_REQUIRES_TRAIN_ONLY')
@@ -69,7 +74,9 @@ def fit_classical(rows, config, seed):
     reducer.fit(matrix)
     if not np.isfinite(reducer.explained_variance_ratio_).all():
         raise ValueError('DEGENERATE_TFIDF_VARIANCE')
-    sample = matrix[:min(256, matrix.shape[0])]
+    indices = heapq.nsmallest(256, range(len(rows)),
+                              key=lambda i: object_hash([seed,rows[i]['category'],rows[i]['parent_asin']]))
+    sample = matrix[indices]
     projected = reducer.transform(sample)
     squared = float(sample.multiply(sample).sum())
     relative_error = max(0.0, 1.0 - float(np.square(projected).sum()) / squared) if squared else None
@@ -93,9 +100,13 @@ def transform_classical(fitted, documents):
 
 
 def neighbor_overlap(left, right, neighbors=5):
-    if left.shape[0] != right.shape[0] or left.shape[0] < 2:
+    if left.ndim != 2 or right.ndim != 2 or left.shape[0] != right.shape[0] or neighbors < 1:
         raise ValueError('NEIGHBOR_SAMPLE_INVALID')
-    k = min(neighbors, left.shape[0] - 1)
+    valid = (np.linalg.norm(left,axis=1)>0) & (np.linalg.norm(right,axis=1)>0)
+    left, right = left[valid], right[valid]
+    if len(left) < 2:
+        return None
+    k = min(neighbors, len(left) - 1)
     a, b = normalize(left), normalize(right)
     sa, sb = a @ a.T, b @ b.T
     np.fill_diagonal(sa, -np.inf)
@@ -106,17 +117,31 @@ def neighbor_overlap(left, right, neighbors=5):
 
 def diagnose_candidates(rows, config, candidates, seeds):
     records = []
+    evaluation = diagnostic_rows(rows, 256, seeds[0])
     for k in candidates:
         embeddings = []
         for seed in seeds:
             try:
                 fitted = fit_classical(rows, {**config,'k':k}, seed)
-                _, vectors = transform_classical(fitted, [r['text_document'] for r in rows[:256]])
+                _, vectors = transform_classical(fitted, [r['text_document'] for r in evaluation])
                 embeddings.append(vectors)
                 records.append({'status':'PASS', **fitted['report']})
             except ValueError as exc:
                 records.append({'status':'SKIPPED', 'k':k, 'seed':seed, 'reason':str(exc)})
         if len(embeddings) >= 2:
-            records.append({'k':k,'diagnostic':'seed_neighbor_overlap','n':len(embeddings[0]),
+            eligible = (np.linalg.norm(embeddings[0],axis=1)>0) & (np.linalg.norm(embeddings[1],axis=1)>0)
+            records.append({'k':k,'diagnostic':'seed_neighbor_overlap','n':int(eligible.sum()),
+                            'n_sampled':len(evaluation),'neighbors':min(5,max(0,int(eligible.sum())-1)),
                             'value':neighbor_overlap(embeddings[0],embeddings[1]), 'seeds':seeds[:2]})
-    return {'selection':'K_SELECTION_PENDING', 'records':records}
+                                                                                            
+    floor=.8
+    variance={k:min(sum(r['explained_variance_ratio']) for r in records if r.get('status')=='PASS' and r['k']==k)
+              for k in candidates if any(r.get('status')=='PASS' and r['k']==k for r in records)}
+    target=floor*max(variance.values()) if variance else None
+    stable={r['k'] for r in records if r.get('diagnostic')=='seed_neighbor_overlap' and
+            r['value'] is not None and r['n']>r['neighbors']+1 and r['value']>=floor}
+    eligible=sorted(k for k in stable if variance[k]>=target)
+    return {'selection':'TRAIN_DIAGNOSTIC' if eligible else 'NO_CANDIDATE_MET_RULE',
+            'selected_k':eligible[0] if eligible else None,
+            'rule':'Smallest k with top-5 neighbor overlap >= 0.80 and worst-seed cumulative variance >= 80% of the best candidate on the same train sample.',
+            'variance_target':target,'records':records}

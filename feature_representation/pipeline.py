@@ -15,7 +15,7 @@ from .aggregation import aggregate, fuse
 from .artifacts import ArtifactWriter, load_stage_a_artifacts, verify_files
 from .classical import fit_classical, training_sample, transform_classical
 from .common import LEVELS, atomic_json, digest, environment, now, object_hash, read_json, source_hashes
-from .contracts import build_index, index_rows
+from .contracts import build_index, check_scaled_source, index_rows
 from .numeric import fit_numeric, transform_numeric
 from .semantic import MODELS, SentenceBackend, encode_products, model_identity
 from .token_stats import TokenSummary
@@ -42,7 +42,29 @@ def validate_config(config, authorize_full=False):
             raise ValueError('INVALID_CLASSICAL_NAME')
     if set(config.get('models',{}))-set(MODELS):
         raise ValueError('UNSUPPORTED_MODEL')
-    if config.get('fusion') and not config.get('numeric'):
+    fusion = config.get('fusion', [])
+    names = [item['name'] for item in fusion]
+    if len(names) != len(set(names)) or any(not n.replace('_','').isalnum() for n in names):
+        raise ValueError('INVALID_OR_DUPLICATE_FUSION_NAME')
+    for item in fusion:
+        weights = (item['text_weight'],item['numeric_weight'])
+        if not np.isfinite(weights).all() or min(weights)<0 or sum(weights)<=0:
+            raise ValueError('INVALID_FUSION_WEIGHTS')
+        if item.get('numeric_space','numeric_distance') not in ('numeric_distance','numeric_rating'):
+            raise ValueError('INVALID_FUSION_NUMERIC_SPACE')
+        classical_spaces = {'tfidf_svd_' + c['name'] for c in config['classical']}
+        if config.get('export_sparse'):
+            classical_spaces |= {'tfidf_' + c['name'] for c in config['classical']}
+        semantic_spaces = {'semantic_' + name + '_' + form for name in config.get('models', {})
+                           for form in ('M','MT','C','M_l2','MT_l2','C_l2')}
+        if item['text_space'] not in classical_spaces | semantic_spaces:
+            raise ValueError('FUSION_TEXT_SPACE_UNAVAILABLE')
+    if config.get('models') and not config.get('cohorts'):
+        raise ValueError('MISSING_COHORT_INPUT')
+    for cfg in config.get('models',{}).values():
+        if cfg.get('tie_policy','group_mean') not in ('group_mean','canonical'):
+            raise ValueError('UNKNOWN_TIE_POLICY')
+    if fusion and not config.get('numeric'):
         raise ValueError('FUSION_REQUIRES_NUMERIC')
 
 
@@ -55,7 +77,10 @@ def input_fingerprints(config):
         raise FileNotFoundError('MISSING_PHASE2_INPUT: '+', '.join(missing))
     if sum(Path(p).stat().st_size for p in paths)>config['max_input_bytes']:
         raise ValueError('INPUT_BYTE_BUDGET_EXCEEDED')
-    return {str(Path(p).resolve()):{'sha256':digest(p),'bytes':Path(p).stat().st_size} for p in paths}
+    hashes = {str(Path(p).resolve()):{'sha256':digest(p),'bytes':Path(p).stat().st_size} for p in paths}
+    if config.get('numeric'):
+        check_scaled_source(config, hashes)
+    return hashes
 
 
 class PeakMonitor:
@@ -102,15 +127,16 @@ def _run(config,output,backend_factory,interrupt_after,monitor):
     provenance={'config':config,'inputs':inputs,'models':model_meta,'code':source_hashes(),'environment':env}
     signature=object_hash(provenance)
     metadata={'level':config['level'],'synthetic':config['level']=='SYNTHETIC_FIXTURE_TEST',
-              'model_selection':'MODEL_SELECTION_PENDING','research_contract':'BLOCKED_RESEARCH_CONTRACT',
+              'model_selection':'MODEL_SELECTION_PENDING','research_contract':'REPRESENTATIONS_ONLY_NO_CLUSTER_OR_PREDICTIVE_EVALUATION',
               'provenance':provenance,'feature_dependencies':{'text':'early_titles/early_bodies positions 1..5 only',
               'numeric':'partner 40 allowed early-review features; no IDs/category/split/targets/snapshot in X'},
               'distance':{'tfidf_svd':'row L2 if configured; cosine excludes zero vectors',
                           'semantic':'M,MT,C raw aggregates; separate L2 variants; masks mandatory',
                           'numeric_compact':'9 partner-scaled features; zero imputation + separate mask; no second z-score',
                           'numeric_distance':'train-variable compact values + 9 missing indicators',
-                          'fusion':'sqrt(weight) times independently unit-normalized blocks; Euclidean'},
-              'tie_policy':'timestamp then normalized title/body then original position; not true order inside tie'}
+                          'fusion':'sqrt(weight) times unit-normalized blocks; numeric_rating for the main comparison, numeric_distance for extended analyses'},
+              'tie_policy':{name:cfg.get('tie_policy','group_mean') for name,cfg in config.get('models',{}).items()},
+              'tie_order':'documents use (timestamp,title,body,source position); primary semantic trend uses group midranks by default'}
     with ArtifactWriter(output,signature,metadata) as writer:
         resumed_chunks=writer.chunk_count
         resumed_rows=writer.row_count
@@ -170,15 +196,20 @@ def _run(config,output,backend_factory,interrupt_after,monitor):
                     for label,value in encoded.items():
                         arrays[prefix+label]=value
                     groups=[r['tie_group'] for r in reviews]
-                    combined=aggregate(encoded['vectors'],encoded['mask'],groups,'canonical')
+                    policy = cfg.get('tie_policy','group_mean')
+                    combined = aggregate(encoded['vectors'],encoded['mask'],groups,policy)
                     for label,value in combined.items():
                         arrays[prefix+label]=value
                         if label in ('M','MT','C'):
                             arrays[prefix+label+'_l2']=normalize(value).astype(np.float32)
                     if cfg.get('tie_sensitivity',True):
-                        sensitivity=aggregate(encoded['vectors'],encoded['mask'],groups,'group_mean')
-                        for label in ('M','MT','C','slope_defined'):
-                            arrays[prefix+label+'_tie_group_mean']=sensitivity[label]
+                        alternative = 'canonical' if policy=='group_mean' else 'group_mean'
+                        other = aggregate(encoded['vectors'],encoded['mask'],groups,alternative)
+                                                                                         
+                        for method,values in ((policy,combined),(alternative,other)):
+                            suffix = '_tie_group_mean' if method=='group_mean' else '_canonical'
+                            for label in ('M','MT','C','slope_defined'):
+                                arrays[prefix+label+suffix]=values[label]
                     train=np.asarray([r['split']=='train' for r in batch])
                     valid=encoded['mask'][train]
                     drops=encoded['tokens_dropped'][train][valid]
@@ -197,7 +228,7 @@ def _run(config,output,backend_factory,interrupt_after,monitor):
                 label=fusion['text_space']
                 if label not in arrays:
                     raise ValueError(f'FUSION_TEXT_SPACE_UNAVAILABLE: {label}')
-                arrays['fusion_'+fusion['name']]=fuse(arrays[label],arrays['numeric_distance'],fusion['text_weight'],fusion['numeric_weight'])
+                arrays['fusion_'+fusion['name']]=fuse(arrays[label],arrays[fusion.get('numeric_space','numeric_distance')],fusion['text_weight'],fusion['numeric_weight'])
             writer.write_chunk(chunk_index,batch,arrays,chunk_meta)
             chunk_index+=1
             if interrupt_after is not None and chunk_index>=interrupt_after:

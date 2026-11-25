@@ -1,8 +1,8 @@
-                                                                           
+"""Features computed from the five reviews available at prediction time."""
 
 from html import unescape
 from itertools import groupby, pairwise
-from math import copysign, fsum, log1p, sqrt
+from math import fsum, sqrt
 import re
 from statistics import mean, pstdev
 
@@ -45,78 +45,23 @@ SCALABLE_FIELDS = (
     *FEATURE_GROUPS["purchase"],
     *(name for name in FEATURE_GROUPS["text"] if name != "all_early_text_missing"),
 )
-
-                                                                              
-                                                                           
-                                                                              
-                                                                 
-_TEXT_LENGTH_FIELDS = (
-    "title_chars_mean", "title_chars_max", "title_words_mean",
-    "body_chars_mean", "body_chars_max", "body_words_mean",
-)
 FEATURE_PRE_TRANSFORMS = {
     **{f"review_gap_{position}_days": "log1p" for position in range(1, EARLY_REVIEW_COUNT)},
     "early_window_days": "log1p",
     "rating_day_slope": "signed_log1p",
-    **{name: "log1p" for name in _TEXT_LENGTH_FIELDS},
 }
-
-                                                                             
-                                                                                
-                                                                                
-                                                                              
-                                               
-FEATURE_VIEWS = {
-    "full": tuple(name for group in FEATURE_GROUPS.values() for name in group),
-    "compact": (
-        "rating_mean", "rating_sd", "early_low_star_share",
-        "rating_first_to_last_change", "early_window_days", "rating_day_slope",
-        "verified_purchase_count",
-        "title_chars_mean", "body_chars_mean",
-    ),
-}
-
-if not set(FEATURE_PRE_TRANSFORMS) <= set(SCALABLE_FIELDS):
-    raise ValueError("Pre-transforms must name scalable fields only")
-if not set(FEATURE_VIEWS["compact"]) <= set(FEATURE_VIEWS["full"]):
-    raise ValueError("The compact view must be a subset of the contract columns")
-
-
-def apply_pre_transform(name, value):
-                                                                             
-
-                                                                              
-                                                                              
-                               
-       
-    kind = FEATURE_PRE_TRANSFORMS.get(name)
-    if kind is None or value is None:
-        return value
-    if kind == "log1p":
-        if value < 0:
-            raise ValueError(f"{name}: log1p requires a non-negative value, got {value}")
-        return log1p(value)
-    if kind == "signed_log1p":
-        return copysign(log1p(abs(value)), value)
-    raise ValueError(f"{name}: unknown pre-transform {kind!r}")
 
 
 def normalize_review_text(value):
-                                     
-
-                                                                              
-                                                                          
-                                                                          
-                                                                   
-       
+    """Decode entities and replace literal or HTML-escaped break tags with spaces."""
     if not isinstance(value, str):
         return ""
-    plain = " ".join(_BREAK_TAG.sub(" ", unescape(value)).split())
+    plain = _BREAK_TAG.sub(" ", unescape(value)).strip()
     return _SURROGATE.sub("\ufffd", plain)
 
 
 def _fit_line(x, ratings):
-                                                            
+    """Return the OLS slope and population residual RMSE."""
     x_mean = mean(x)
     rating_mean = mean(ratings)
     x_centered = [value - x_mean for value in x]
@@ -135,14 +80,13 @@ def _fit_line(x, ratings):
 
 
 def make_features(early_reviews):
-                                                                                
+    """Return numeric features and a product document from exactly five reviews.
 
-                                                                            
-                                                                           
-                                                                      
-                                                                       
-                                                                         
-       
+    Inputs are mappings with integer millisecond timestamps, integer ratings
+    from 1 to 5, and optional title, text and verified_purchase fields.
+    Equal-time ratings are pooled only for position-dependent features.
+    Text from equal-time reviews is ordered by normalized title and body.
+    """
     reviews = list(early_reviews)
     if len(reviews) != EARLY_REVIEW_COUNT:
         raise ValueError("Feature extraction requires exactly five early reviews")

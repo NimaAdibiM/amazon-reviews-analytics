@@ -1,4 +1,4 @@
-                                                   
+"""Run the review stage for all four categories."""
 import argparse
 from pathlib import Path
 

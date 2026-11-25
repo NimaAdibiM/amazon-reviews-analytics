@@ -1,4 +1,4 @@
-                                                                              
+"""Build the observed 5+10 review cohort with a disk-backed, bounded index."""
 
 from __future__ import annotations
 
@@ -192,7 +192,7 @@ def _parent_groups(source, records, order):
 
 
 def _dedup_positions(source, records, positions, timestamps):
-                                                                                
+    """Only equal timestamps within a parent can contain identical full rows."""
     repeats = np.flatnonzero(timestamps[1:] == timestamps[:-1])
     if not repeats.size:
         return positions
@@ -322,12 +322,12 @@ def _run(executor, function, jobs):
 
 
 def ingest_category(reviews_path, category, output_dir, *, workers=4, shards=64, force=False):
-                                                                              
+    """Publish aggregate review quality and product examples for one category.
 
-                                                                                
-                                                                            
-                                                                                  
-       
+    Each worker indexes a disjoint source byte interval. Equal parent IDs always
+    land in the same shard. Product examples retain the five original review
+    positions and expose absent/unusable text as null values with explicit states.
+    """
     if workers < 1 or shards < 1:
         raise ValueError("workers and shards must be positive")
     source = Path(reviews_path).resolve(strict=True)

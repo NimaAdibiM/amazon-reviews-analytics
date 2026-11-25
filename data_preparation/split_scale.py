@@ -1,4 +1,4 @@
-                                                                            
+"""Assign entire parent groups to a split and fit a training-only scaler."""
 
 import csv
 from collections.abc import Iterable, Mapping
@@ -27,7 +27,7 @@ ZERO_DOMINANCE_THRESHOLD = 0.99
 
 
 def assign_split(parent_asin: str) -> str:
-                                                                      
+    """Return the reproducible split of a parent in every category."""
     if not isinstance(parent_asin, str) or not parent_asin.strip():
         raise ValueError("parent_asin must be a nonblank string")
     digest = hashlib.sha256(_SEED_PREFIX + parent_asin.encode("utf-8")).digest()
@@ -97,7 +97,7 @@ def _transform(number: float, method: str) -> float:
 def fit_scaler(features_csv: Path, output: Path, scalable_fields: Iterable[str], *,
                pre_transforms: Mapping[str, str] | None = None,
                passthrough_fields: Iterable[str] = ()) -> dict:
-                                                                                        
+    """Fit training-only z-scores after fixed transforms and audit feature variation."""
     features_csv = Path(features_csv)
     output = Path(output)
     if features_csv.resolve() == output.resolve():
@@ -184,7 +184,7 @@ def fit_scaler(features_csv: Path, output: Path, scalable_fields: Iterable[str],
 
 
 def apply_scaler(row: dict, artifact: dict) -> dict:
-                                                                                 
+    """Return one transformed feature row using the saved training parameters."""
     transformed = row.copy()
     transforms = artifact.get("pre_transforms", {})
     for field, params in artifact["features"].items():

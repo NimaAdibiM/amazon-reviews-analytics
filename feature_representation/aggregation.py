@@ -4,7 +4,9 @@ from sklearn.preprocessing import normalize
 
 def aggregate(vectors, mask, groups=None, tie_policy='canonical'):
     vectors = np.asarray(vectors, dtype=np.float32)
-    mask = np.asarray(mask, dtype=bool)
+    mask = np.asarray(mask)
+    if mask.dtype != bool:
+        raise ValueError('BOOLEAN_REVIEW_MASK_REQUIRED')
     if vectors.ndim != 3 or vectors.shape[1] != 5 or mask.shape != vectors.shape[:2]:
         raise ValueError('FIVE_EMBEDDINGS_SHAPE_REQUIRED')
     if not np.isfinite(vectors).all():
@@ -37,6 +39,12 @@ def aggregate(vectors, mask, groups=None, tie_policy='canonical'):
 
 
 def fuse(text, numeric, text_weight, numeric_weight):
-    if text.shape[0] != numeric.shape[0] or not np.isfinite([text_weight,numeric_weight]).all() or min(text_weight,numeric_weight) < 0 or text_weight+numeric_weight == 0:
+    from scipy import sparse
+    if text.ndim != 2 or numeric.ndim != 2 or text.shape[0] != numeric.shape[0]:
         raise ValueError('INVALID_FUSION_BLOCKS_OR_WEIGHTS')
-    return np.concatenate((np.sqrt(text_weight)*normalize(text),np.sqrt(numeric_weight)*normalize(numeric)),axis=1).astype(np.float32)
+    if not np.isfinite([text_weight,numeric_weight]).all() or min(text_weight,numeric_weight)<0 or text_weight+numeric_weight==0:
+        raise ValueError('INVALID_FUSION_BLOCKS_OR_WEIGHTS')
+    blocks = [np.sqrt(text_weight)*normalize(text), np.sqrt(numeric_weight)*normalize(numeric)]
+    if any(sparse.issparse(block) for block in blocks):
+        return sparse.hstack(blocks,format='csr',dtype=np.float32)
+    return np.concatenate(blocks,axis=1).astype(np.float32)

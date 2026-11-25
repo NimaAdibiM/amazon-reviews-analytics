@@ -1,0 +1,841 @@
+{
+  "data": "REAL_512_SUPPLIED_ARTIFACTS",
+  "kind": "exploratory_preflight, not official full Stage B receipt",
+  "plan_sha256": "c78bdd2f8210b5efa254f5388a7dec2b9563fe64324526180da38e6ad4bcc071",
+  "results": [
+    {
+      "space": "classical",
+      "k": 3,
+      "seed_runs": [
+        {
+          "seed": 42,
+          "silhouette_cosine": 0.02645416185259819,
+          "cluster_sizes": [
+            120,
+            245,
+            147
+          ],
+          "min_cluster_size": 120,
+          "inertia": 427.6223449707031
+        },
+        {
+          "seed": 52,
+          "silhouette_cosine": 0.02905949205160141,
+          "cluster_sizes": [
+            236,
+            111,
+            165
+          ],
+          "min_cluster_size": 111,
+          "inertia": 427.6877746582031
+        },
+        {
+          "seed": 62,
+          "silhouette_cosine": 0.02848297543823719,
+          "cluster_sizes": [
+            104,
+            147,
+            261
+          ],
+          "min_cluster_size": 104,
+          "inertia": 427.5166015625
+        },
+        {
+          "seed": 72,
+          "silhouette_cosine": 0.02820626273751259,
+          "cluster_sizes": [
+            100,
+            148,
+            264
+          ],
+          "min_cluster_size": 100,
+          "inertia": 427.5094909667969
+        },
+        {
+          "seed": 82,
+          "silhouette_cosine": 0.028213713318109512,
+          "cluster_sizes": [
+            155,
+            108,
+            249
+          ],
+          "min_cluster_size": 108,
+          "inertia": 427.5567626953125
+        }
+      ],
+      "seed_ari_pairwise_median": 0.8015761884824308,
+      "seed_ari_pairwise_q1": 0.7733529765125001,
+      "silhouette_median": 0.028213713318109512,
+      "min_cluster_over_seeds": 100,
+      "subsample_ari_median": 0.7807548232779421,
+      "subsamples": [
+        {
+          "seed": 142,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.7387089336931423,
+          "min_cluster_size": 85
+        },
+        {
+          "seed": 242,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.8228007128627419,
+          "min_cluster_size": 83
+        }
+      ],
+      "time_seconds": 0.19587400999995452
+    },
+    {
+      "space": "classical",
+      "k": 5,
+      "seed_runs": [
+        {
+          "seed": 42,
+          "silhouette_cosine": 0.021638458594679832,
+          "cluster_sizes": [
+            147,
+            139,
+            87,
+            62,
+            77
+          ],
+          "min_cluster_size": 62,
+          "inertia": 420.7939453125
+        },
+        {
+          "seed": 52,
+          "silhouette_cosine": 0.025531060993671417,
+          "cluster_sizes": [
+            91,
+            124,
+            57,
+            95,
+            145
+          ],
+          "min_cluster_size": 57,
+          "inertia": 420.2709045410156
+        },
+        {
+          "seed": 62,
+          "silhouette_cosine": 0.02609085477888584,
+          "cluster_sizes": [
+            132,
+            138,
+            54,
+            77,
+            111
+          ],
+          "min_cluster_size": 54,
+          "inertia": 420.3147277832031
+        },
+        {
+          "seed": 72,
+          "silhouette_cosine": 0.022584285587072372,
+          "cluster_sizes": [
+            124,
+            97,
+            79,
+            129,
+            83
+          ],
+          "min_cluster_size": 79,
+          "inertia": 420.4996643066406
+        },
+        {
+          "seed": 82,
+          "silhouette_cosine": 0.02595374919474125,
+          "cluster_sizes": [
+            47,
+            93,
+            98,
+            116,
+            158
+          ],
+          "min_cluster_size": 47,
+          "inertia": 420.5449523925781
+        }
+      ],
+      "seed_ari_pairwise_median": 0.5344265352022385,
+      "seed_ari_pairwise_q1": 0.4841146282572446,
+      "silhouette_median": 0.025531060993671417,
+      "min_cluster_over_seeds": 47,
+      "subsample_ari_median": 0.4142915106726318,
+      "subsamples": [
+        {
+          "seed": 142,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.4516766503257925,
+          "min_cluster_size": 39
+        },
+        {
+          "seed": 242,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.37690637101947105,
+          "min_cluster_size": 46
+        }
+      ],
+      "time_seconds": 0.21266344299999673
+    },
+    {
+      "space": "classical",
+      "k": 8,
+      "seed_runs": [
+        {
+          "seed": 42,
+          "silhouette_cosine": 0.021957779303193092,
+          "cluster_sizes": [
+            42,
+            133,
+            32,
+            124,
+            45,
+            71,
+            24,
+            41
+          ],
+          "min_cluster_size": 24,
+          "inertia": 414.2022705078125
+        },
+        {
+          "seed": 52,
+          "silhouette_cosine": 0.021517112851142883,
+          "cluster_sizes": [
+            56,
+            104,
+            169,
+            44,
+            43,
+            21,
+            28,
+            47
+          ],
+          "min_cluster_size": 21,
+          "inertia": 413.9025573730469
+        },
+        {
+          "seed": 62,
+          "silhouette_cosine": 0.020907223224639893,
+          "cluster_sizes": [
+            29,
+            94,
+            70,
+            110,
+            70,
+            67,
+            48,
+            24
+          ],
+          "min_cluster_size": 24,
+          "inertia": 414.4796142578125
+        },
+        {
+          "seed": 72,
+          "silhouette_cosine": 0.024983935058116913,
+          "cluster_sizes": [
+            117,
+            47,
+            79,
+            43,
+            60,
+            43,
+            86,
+            37
+          ],
+          "min_cluster_size": 37,
+          "inertia": 413.2746276855469
+        },
+        {
+          "seed": 82,
+          "silhouette_cosine": 0.02618483081459999,
+          "cluster_sizes": [
+            69,
+            85,
+            119,
+            34,
+            45,
+            19,
+            92,
+            49
+          ],
+          "min_cluster_size": 19,
+          "inertia": 413.39501953125
+        }
+      ],
+      "seed_ari_pairwise_median": 0.3332148029568479,
+      "seed_ari_pairwise_q1": 0.31605027115794304,
+      "silhouette_median": 0.021957779303193092,
+      "min_cluster_over_seeds": 19,
+      "subsample_ari_median": 0.2735694579091381,
+      "subsamples": [
+        {
+          "seed": 142,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.29212918516943887,
+          "min_cluster_size": 18
+        },
+        {
+          "seed": 242,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.2550097306488373,
+          "min_cluster_size": 25
+        }
+      ],
+      "time_seconds": 0.2791366769999968
+    },
+    {
+      "space": "bge",
+      "k": 3,
+      "seed_runs": [
+        {
+          "seed": 42,
+          "silhouette_cosine": 0.1462806612253189,
+          "cluster_sizes": [
+            110,
+            165,
+            237
+          ],
+          "min_cluster_size": 110,
+          "inertia": 108.61309051513672
+        },
+        {
+          "seed": 52,
+          "silhouette_cosine": 0.1472034752368927,
+          "cluster_sizes": [
+            171,
+            109,
+            232
+          ],
+          "min_cluster_size": 109,
+          "inertia": 108.6274185180664
+        },
+        {
+          "seed": 62,
+          "silhouette_cosine": 0.1454613208770752,
+          "cluster_sizes": [
+            166,
+            240,
+            106
+          ],
+          "min_cluster_size": 106,
+          "inertia": 108.60749053955078
+        },
+        {
+          "seed": 72,
+          "silhouette_cosine": 0.14585351943969727,
+          "cluster_sizes": [
+            165,
+            239,
+            108
+          ],
+          "min_cluster_size": 108,
+          "inertia": 108.61109161376953
+        },
+        {
+          "seed": 82,
+          "silhouette_cosine": 0.1462806612253189,
+          "cluster_sizes": [
+            237,
+            110,
+            165
+          ],
+          "min_cluster_size": 110,
+          "inertia": 108.61309051513672
+        }
+      ],
+      "seed_ari_pairwise_median": 0.9708196788958474,
+      "seed_ari_pairwise_q1": 0.9550517160606127,
+      "silhouette_median": 0.1462806612253189,
+      "min_cluster_over_seeds": 106,
+      "subsample_ari_median": 0.9613249030366726,
+      "subsamples": [
+        {
+          "seed": 142,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.9451730294221118,
+          "min_cluster_size": 84
+        },
+        {
+          "seed": 242,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.9774767766512334,
+          "min_cluster_size": 84
+        }
+      ],
+      "time_seconds": 0.1722820850000062
+    },
+    {
+      "space": "bge",
+      "k": 5,
+      "seed_runs": [
+        {
+          "seed": 42,
+          "silhouette_cosine": 0.14345857501029968,
+          "cluster_sizes": [
+            116,
+            104,
+            87,
+            98,
+            107
+          ],
+          "min_cluster_size": 87,
+          "inertia": 101.48566436767578
+        },
+        {
+          "seed": 52,
+          "silhouette_cosine": 0.1373680680990219,
+          "cluster_sizes": [
+            95,
+            101,
+            130,
+            92,
+            94
+          ],
+          "min_cluster_size": 92,
+          "inertia": 101.4987564086914
+        },
+        {
+          "seed": 62,
+          "silhouette_cosine": 0.14658594131469727,
+          "cluster_sizes": [
+            102,
+            94,
+            122,
+            108,
+            86
+          ],
+          "min_cluster_size": 86,
+          "inertia": 101.47925567626953
+        },
+        {
+          "seed": 72,
+          "silhouette_cosine": 0.14033886790275574,
+          "cluster_sizes": [
+            88,
+            93,
+            137,
+            90,
+            104
+          ],
+          "min_cluster_size": 88,
+          "inertia": 101.47502136230469
+        },
+        {
+          "seed": 82,
+          "silhouette_cosine": 0.14457470178604126,
+          "cluster_sizes": [
+            95,
+            138,
+            94,
+            104,
+            81
+          ],
+          "min_cluster_size": 81,
+          "inertia": 101.51435089111328
+        }
+      ],
+      "seed_ari_pairwise_median": 0.6477763238159776,
+      "seed_ari_pairwise_q1": 0.6284612188337806,
+      "silhouette_median": 0.14345857501029968,
+      "min_cluster_over_seeds": 81,
+      "subsample_ari_median": 0.5705267722991625,
+      "subsamples": [
+        {
+          "seed": 142,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.587727571759831,
+          "min_cluster_size": 54
+        },
+        {
+          "seed": 242,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.5533259728384938,
+          "min_cluster_size": 75
+        }
+      ],
+      "time_seconds": 0.25727164900001753
+    },
+    {
+      "space": "bge",
+      "k": 8,
+      "seed_runs": [
+        {
+          "seed": 42,
+          "silhouette_cosine": 0.13925901055335999,
+          "cluster_sizes": [
+            114,
+            74,
+            91,
+            64,
+            36,
+            54,
+            64,
+            15
+          ],
+          "min_cluster_size": 15,
+          "inertia": 96.5654525756836
+        },
+        {
+          "seed": 52,
+          "silhouette_cosine": 0.11707422137260437,
+          "cluster_sizes": [
+            52,
+            92,
+            42,
+            42,
+            96,
+            59,
+            69,
+            60
+          ],
+          "min_cluster_size": 42,
+          "inertia": 96.26384735107422
+        },
+        {
+          "seed": 62,
+          "silhouette_cosine": 0.10793555527925491,
+          "cluster_sizes": [
+            49,
+            58,
+            89,
+            83,
+            51,
+            78,
+            64,
+            40
+          ],
+          "min_cluster_size": 40,
+          "inertia": 96.32320404052734
+        },
+        {
+          "seed": 72,
+          "silhouette_cosine": 0.13429971039295197,
+          "cluster_sizes": [
+            22,
+            36,
+            62,
+            91,
+            109,
+            64,
+            72,
+            56
+          ],
+          "min_cluster_size": 22,
+          "inertia": 96.37939453125
+        },
+        {
+          "seed": 82,
+          "silhouette_cosine": 0.10405704379081726,
+          "cluster_sizes": [
+            37,
+            62,
+            78,
+            56,
+            68,
+            68,
+            62,
+            81
+          ],
+          "min_cluster_size": 37,
+          "inertia": 96.60648345947266
+        }
+      ],
+      "seed_ari_pairwise_median": 0.6023812198157297,
+      "seed_ari_pairwise_q1": 0.5799606777560176,
+      "silhouette_median": 0.11707422137260437,
+      "min_cluster_over_seeds": 15,
+      "subsample_ari_median": 0.5767553971284123,
+      "subsamples": [
+        {
+          "seed": 142,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.5729338239455557,
+          "min_cluster_size": 31
+        },
+        {
+          "seed": 242,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.5805769703112689,
+          "min_cluster_size": 19
+        }
+      ],
+      "time_seconds": 0.3321905840000454
+    },
+    {
+      "space": "e5",
+      "k": 3,
+      "seed_runs": [
+        {
+          "seed": 42,
+          "silhouette_cosine": 0.13147619366645813,
+          "cluster_sizes": [
+            196,
+            151,
+            165
+          ],
+          "min_cluster_size": 151,
+          "inertia": 30.74481201171875
+        },
+        {
+          "seed": 52,
+          "silhouette_cosine": 0.13147619366645813,
+          "cluster_sizes": [
+            165,
+            151,
+            196
+          ],
+          "min_cluster_size": 151,
+          "inertia": 30.74481201171875
+        },
+        {
+          "seed": 62,
+          "silhouette_cosine": 0.1313551813364029,
+          "cluster_sizes": [
+            195,
+            166,
+            151
+          ],
+          "min_cluster_size": 151,
+          "inertia": 30.744800567626953
+        },
+        {
+          "seed": 72,
+          "silhouette_cosine": 0.13147619366645813,
+          "cluster_sizes": [
+            151,
+            165,
+            196
+          ],
+          "min_cluster_size": 151,
+          "inertia": 30.74481201171875
+        },
+        {
+          "seed": 82,
+          "silhouette_cosine": 0.13074305653572083,
+          "cluster_sizes": [
+            168,
+            153,
+            191
+          ],
+          "min_cluster_size": 153,
+          "inertia": 30.748411178588867
+        }
+      ],
+      "seed_ari_pairwise_median": 0.993832280108006,
+      "seed_ari_pairwise_q1": 0.9647146444614625,
+      "silhouette_median": 0.13147619366645813,
+      "min_cluster_over_seeds": 151,
+      "subsample_ari_median": 0.9779130669918111,
+      "subsamples": [
+        {
+          "seed": 142,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.9925154954677786,
+          "min_cluster_size": 118
+        },
+        {
+          "seed": 242,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.9633106385158436,
+          "min_cluster_size": 112
+        }
+      ],
+      "time_seconds": 0.18790464099998871
+    },
+    {
+      "space": "e5",
+      "k": 5,
+      "seed_runs": [
+        {
+          "seed": 42,
+          "silhouette_cosine": 0.11017601191997528,
+          "cluster_sizes": [
+            132,
+            76,
+            84,
+            94,
+            126
+          ],
+          "min_cluster_size": 76,
+          "inertia": 29.001556396484375
+        },
+        {
+          "seed": 52,
+          "silhouette_cosine": 0.11066767573356628,
+          "cluster_sizes": [
+            136,
+            76,
+            86,
+            86,
+            128
+          ],
+          "min_cluster_size": 76,
+          "inertia": 29.001483917236328
+        },
+        {
+          "seed": 62,
+          "silhouette_cosine": 0.10412773489952087,
+          "cluster_sizes": [
+            95,
+            129,
+            110,
+            111,
+            67
+          ],
+          "min_cluster_size": 67,
+          "inertia": 28.99576759338379
+        },
+        {
+          "seed": 72,
+          "silhouette_cosine": 0.10931043326854706,
+          "cluster_sizes": [
+            81,
+            74,
+            96,
+            128,
+            133
+          ],
+          "min_cluster_size": 74,
+          "inertia": 28.992671966552734
+        },
+        {
+          "seed": 82,
+          "silhouette_cosine": 0.11029548943042755,
+          "cluster_sizes": [
+            74,
+            139,
+            74,
+            124,
+            101
+          ],
+          "min_cluster_size": 74,
+          "inertia": 28.986879348754883
+        }
+      ],
+      "seed_ari_pairwise_median": 0.6183961573003558,
+      "seed_ari_pairwise_q1": 0.5584782700261754,
+      "silhouette_median": 0.11017601191997528,
+      "min_cluster_over_seeds": 67,
+      "subsample_ari_median": 0.6557305801472315,
+      "subsamples": [
+        {
+          "seed": 142,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.6416739171307162,
+          "min_cluster_size": 54
+        },
+        {
+          "seed": 242,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.6697872431637469,
+          "min_cluster_size": 58
+        }
+      ],
+      "time_seconds": 0.2723182380000253
+    },
+    {
+      "space": "e5",
+      "k": 8,
+      "seed_runs": [
+        {
+          "seed": 42,
+          "silhouette_cosine": 0.08611368387937546,
+          "cluster_sizes": [
+            39,
+            74,
+            46,
+            74,
+            48,
+            71,
+            62,
+            98
+          ],
+          "min_cluster_size": 39,
+          "inertia": 27.606426239013672
+        },
+        {
+          "seed": 52,
+          "silhouette_cosine": 0.08417565375566483,
+          "cluster_sizes": [
+            74,
+            66,
+            65,
+            54,
+            64,
+            45,
+            43,
+            101
+          ],
+          "min_cluster_size": 43,
+          "inertia": 27.54148292541504
+        },
+        {
+          "seed": 62,
+          "silhouette_cosine": 0.07907752692699432,
+          "cluster_sizes": [
+            41,
+            72,
+            92,
+            86,
+            62,
+            53,
+            58,
+            48
+          ],
+          "min_cluster_size": 41,
+          "inertia": 27.585763931274414
+        },
+        {
+          "seed": 72,
+          "silhouette_cosine": 0.08516977727413177,
+          "cluster_sizes": [
+            50,
+            53,
+            69,
+            95,
+            48,
+            52,
+            74,
+            71
+          ],
+          "min_cluster_size": 48,
+          "inertia": 27.604576110839844
+        },
+        {
+          "seed": 82,
+          "silhouette_cosine": 0.08748188614845276,
+          "cluster_sizes": [
+            62,
+            40,
+            91,
+            65,
+            53,
+            78,
+            51,
+            72
+          ],
+          "min_cluster_size": 40,
+          "inertia": 27.651887893676758
+        }
+      ],
+      "seed_ari_pairwise_median": 0.6003292402114029,
+      "seed_ari_pairwise_q1": 0.5103518777182905,
+      "silhouette_median": 0.08516977727413177,
+      "min_cluster_over_seeds": 39,
+      "subsample_ari_median": 0.5377653063764793,
+      "subsamples": [
+        {
+          "seed": 142,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.5538843107469021,
+          "min_cluster_size": 41
+        },
+        {
+          "seed": 242,
+          "n": 410,
+          "ari_against_full_seed42_same_points": 0.5216463020060566,
+          "min_cluster_size": 39
+        }
+      ],
+      "time_seconds": 0.34991625499998236
+    }
+  ]
+}

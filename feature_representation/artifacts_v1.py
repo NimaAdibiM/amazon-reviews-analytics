@@ -24,6 +24,22 @@ def verify_files(root, hashes):
             raise ValueError(f'ARTIFACT_CHECKSUM_MISMATCH: {relative}')
 
 
+def space_schema(arrays):
+    return {name:(value.shape[1:],str(value.dtype),sparse.issparse(value)) for name,value in arrays.items()}
+
+
+def validate_keys(keys, previous=None):
+    for row in keys:
+        if 'split' not in row or type(row.get('source_record')) is not int or row['source_record']<1:
+            raise ValueError('INVALID_ARTIFACT_KEY')
+        category,parent,_ = validate_key(row)
+        key = (category,parent)
+        if previous is not None and key<=previous:
+            raise ValueError('KEY_ORDER_OR_DUPLICATE')
+        previous=key
+    return previous
+
+
 class ArtifactWriter:
     def __init__(self, root, signature, metadata):
         self.root=Path(root)
@@ -54,6 +70,8 @@ class ArtifactWriter:
             return old
         if index != len(self.checkpoint['chunks']):
             raise ValueError('NONCONTIGUOUS_CHECKPOINT')
+        if (self.root/'manifest.json').exists():
+            raise ValueError('PUBLISHED_ARTIFACT_IMMUTABLE')
         name=f'chunk_{index:06d}'
         temporary=self.root/(name+'.partial')
         if temporary.exists():
@@ -94,6 +112,8 @@ class ArtifactWriter:
         return record
 
     def publish(self, expected_rows, fitted_files, report):
+        if (self.root/'manifest.json').exists():
+            raise ValueError('PUBLISHED_ARTIFACT_IMMUTABLE')
         count=sum(c['n'] for c in self.checkpoint['chunks'])
         if count!=expected_rows:
             raise ValueError('FINAL_ROW_COUNT_MISMATCH')
@@ -115,6 +135,7 @@ def load_stage_a_artifacts(root):
     verify_files(root,manifest['fitted_files'])
     total=0
     previous=None
+    schema=None
     for expected_index,chunk in enumerate(manifest['chunks']):
         if chunk['index'] != expected_index:
             raise ValueError('CHUNK_ORDER_MISMATCH')
@@ -122,17 +143,14 @@ def load_stage_a_artifacts(root):
         keys=read_json(safe_path(root,chunk['keys']))
         if object_hash(keys)!=chunk['keys_hash'] or len(keys)!=chunk['n']:
             raise ValueError('KEYS_HASH_OR_COUNT_MISMATCH')
-        for row in keys:
-            category,parent,split=validate_key(row)
-            key=(category,parent)
-            if previous is not None and key<=previous:
-                raise ValueError('KEY_ORDER_OR_DUPLICATE')
-            previous=key
+        previous=validate_keys(keys,previous)
         arrays={}
         for label,desc in chunk['arrays'].items():
             if desc['path'] not in chunk['files']:
                 raise ValueError('ARRAY_NOT_CHECKSUMMED')
             path=safe_path(root,desc['path'])
+            if desc['storage'] not in ('csr_npz','npy'):
+                raise ValueError('UNKNOWN_ARRAY_STORAGE')
             values=sparse.load_npz(path) if desc['storage']=='csr_npz' else np.load(path,mmap_mode='r',allow_pickle=False)
             if list(values.shape)!=desc['shape'] or values.shape[0]!=len(keys) or str(values.dtype)!=desc['dtype']:
                 raise ValueError('LOADED_SHAPE_OR_DTYPE_MISMATCH')
@@ -147,6 +165,10 @@ def load_stage_a_artifacts(root):
                     raise ValueError('SEMANTIC_MASK_CONTRACT_MISMATCH')
                 if np.any(values[~mask]!=0):
                     raise ValueError('EMPTY_POSITION_NOT_ZERO')
+        current=space_schema(arrays)
+        if schema is not None and current != schema:
+            raise ValueError('CROSS_CHUNK_SCHEMA_MISMATCH')
+        schema=current
         total+=len(keys)
         yield keys,arrays
     if total!=manifest['n_products']:

@@ -1,4 +1,4 @@
-                                                                                    
+"""Audit product snapshots and prepare a compact, explicitly post-hoc side table."""
 
 from collections import Counter, defaultdict
 import csv
@@ -48,7 +48,7 @@ def _reject_constant(value):
 
 
 def scan_metadata(path, category, output):
-                                                                                          
+    """Stream the full metadata file; keep invalid values and missing states auditable."""
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     table = output / f"{category}.csv.gz"
@@ -103,7 +103,7 @@ def scan_metadata(path, category, output):
 
 
 def read_for_products(path, parents):
-                                                                           
+    """Keep the snapshot only for parents with exactly one metadata row."""
     result = {}
     with gzip.open(path, "rt", newline="", encoding="utf-8") as handle:
         for row in csv.DictReader(handle):
